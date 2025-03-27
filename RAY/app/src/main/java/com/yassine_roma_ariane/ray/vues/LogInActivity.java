@@ -6,14 +6,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.yassine_roma_ariane.ray.R;
+import com.yassine_roma_ariane.ray.viewModel.CompteUtilisateurViewModel;
 
 public class LogInActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -22,6 +26,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     private Button btnSeConnecter;
     private TextView txtCreerCompte;
     private TextView txtPasDeCompte;
+    private CompteUtilisateurViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +41,38 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         btnSeConnecter.setOnClickListener(this);
         txtPasDeCompte.setOnClickListener(this);
         txtCreerCompte.setOnClickListener(this);
+
+        viewModel = new ViewModelProvider(this).get(CompteUtilisateurViewModel.class);
+
+        //CORRIGER PLUS TARD
+        //si il reste du temps, faire en sorte que la personnne reste connecter si elle quitte l'app
+        viewModel.getMessage().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                if (s != null) {
+                    Toast.makeText(LogInActivity.this, s, Toast.LENGTH_SHORT).show();
+
+                    if (s.equals("Connexion reussie")) {
+                        Intent intent = new Intent(LogInActivity.this, AccueilFragment.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+            }
+        });
     }
 
     @Override
     public void onClick(View v) {
         if (v==btnSeConnecter){
+           if (!edtMdp.getText().toString().isEmpty()&&!edtCourriel.getText().toString().isEmpty()){
+               String courriel = edtCourriel.getText().toString();
+               String mdp = edtMdp.getText().toString();
+               viewModel.authentifierCompte(courriel,mdp);
 
+           }else{
+               Toast.makeText(LogInActivity.this,"Veuillez remplir les champs",Toast.LENGTH_SHORT).show();
+           }
         }
         if (v==txtCreerCompte || v==txtPasDeCompte){
             Intent intent = new Intent(LogInActivity.this, SignInActivity.class);
