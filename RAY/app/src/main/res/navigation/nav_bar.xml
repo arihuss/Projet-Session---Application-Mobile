@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_bar"
+    app:startDestination="@id/accueilFragment">
+
+    <activity
+        android:id="@+id/deconnexion"
+        android:name="com.yassine_roma_ariane.ray.vues.LogInActivity"
+        android:label="activity_log_in"
+        tools:layout="@layout/activity_log_in" />
+    <fragment
+        android:id="@+id/accueilFragment"
+        android:name="com.yassine_roma_ariane.ray.vues.AccueilFragment"
+        android:label="fragment_accueil"
+        tools:layout="@layout/fragment_accueil" />
+    <fragment
+        android:id="@+id/historiqueFragment"
+        android:name="com.yassine_roma_ariane.ray.vues.HistoriqueFragment"
+        android:label="fragment_historique"
+        tools:layout="@layout/fragment_historique" />
+</navigation>

@@ -16,9 +16,6 @@
             android:name=".vues.ConfirmationActivity"
             android:exported="false" />
         <activity
-            android:name=".vues.HistoriquesActivity"
-            android:exported="false" />
-        <activity
             android:name=".vues.DetailsActivity"
             android:exported="false" />
         <activity
