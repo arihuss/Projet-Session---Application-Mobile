@@ -118,7 +118,7 @@
         tools:ignore="TextContrastCheck" />
 
     <TextView
-        android:id="@+id/txtPasDeCompte"
+        android:id="@+id/txtCreerCompte"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="68dp"
@@ -131,7 +131,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/txtCreerCompte"
+        android:id="@+id/txtPasDeCompte"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="92dp"
