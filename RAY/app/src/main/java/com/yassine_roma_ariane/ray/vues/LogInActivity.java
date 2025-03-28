@@ -44,20 +44,18 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 
         viewModel = new ViewModelProvider(this).get(CompteUtilisateurViewModel.class);
 
-        //CORRIGER PLUS TARD
-        //si il reste du temps, faire en sorte que la personnne reste connecter si elle quitte l'app
-        viewModel.getMessage().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                if (s != null) {
-                    Toast.makeText(LogInActivity.this, s, Toast.LENGTH_SHORT).show();
+        // Observer les messages d'erreur/succès
+        viewModel.getMessage().observe(this, message -> {
+            Toast.makeText(LogInActivity.this, message, Toast.LENGTH_SHORT).show();
+        });
 
-                    if (s.equals("Connexion reussie")) {
-                        Intent intent = new Intent(LogInActivity.this, AccueilFragment.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }
+        // Observer l'état d'authentification
+        viewModel.isAuthentifier().observe(this, isAuthenticated -> {
+            if (isAuthenticated) {
+                // Connexion réussie → Rediriger vers l'activité principale
+                Intent intent = new Intent(LogInActivity.this, SignInActivity.class);
+                startActivity(intent);
+                finish(); // Fermer l'écran de connexion
             }
         });
     }

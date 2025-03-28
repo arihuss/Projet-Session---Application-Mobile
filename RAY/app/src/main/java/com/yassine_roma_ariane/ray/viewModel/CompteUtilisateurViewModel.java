@@ -14,6 +14,7 @@ public class CompteUtilisateurViewModel extends ViewModel {
 
     private final MutableLiveData<List<CompteUtilisateur>> comptesMutable = new MutableLiveData<>();
     private final MutableLiveData<String> messageMutable = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> estAuthentifier = new MutableLiveData<>();
 
     public CompteUtilisateurViewModel() {
         repository = new CompteRepository();
@@ -24,6 +25,8 @@ public class CompteUtilisateurViewModel extends ViewModel {
     public LiveData<List<CompteUtilisateur>> getComptes(){return comptesMutable;}
 
     public LiveData<String> getMessage() {return messageMutable;}
+
+    public LiveData<Boolean> isAuthentifier(){return estAuthentifier;}
 
     public void refreshComptes(){
         repository.fetchComptesFromAPI(new CompteRepository.FetchComptesCallback() {
@@ -62,9 +65,11 @@ public class CompteUtilisateurViewModel extends ViewModel {
             @Override
             public void onAuthentificationReussie(boolean success) {
                 if (success){
+                    estAuthentifier.postValue(true);
                     messageMutable.postValue("Connexion reussie");
                 }
                 else{
+                    estAuthentifier.postValue(false);
                     messageMutable.postValue("Echec de l'authentification");
                 }
             }
