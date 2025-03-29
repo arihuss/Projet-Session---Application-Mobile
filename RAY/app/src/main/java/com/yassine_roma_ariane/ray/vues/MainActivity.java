@@ -19,15 +19,28 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState == null){
+
+        // Vérifier si l'utilisateur n'est pas authentifié et que c'est le premier lancement
+        boolean isAuthenticated = getIntent().getBooleanExtra("authenticated", false);
+
+        if (!isAuthenticated && savedInstanceState == null) {
             Intent intent = new Intent(this, LogInActivity.class);
             startActivity(intent);
             finish();
             return;
         }
+
         setContentView(R.layout.activity_main);
 
+        // Charger AccueilFragment par défaut
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment, new AccueilFragment())
+                    .commit();
+        }
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.accueilFragment);
 
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
@@ -45,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
                     finish(); // Ferme MainActivity après déconnexion
                     return true;
                 }
-
 
                 if (selectedFragment != null) {
                     getSupportFragmentManager().beginTransaction()

@@ -53,10 +53,10 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         // Observer l'état d'authentification
         viewModel.isAuthentifier().observe(this, isAuthenticated -> {
             if (isAuthenticated) {
-                // Connexion réussie → Rediriger vers l'activité principale
-                Intent intent = new Intent(LogInActivity.this, SignInActivity.class);
+                Intent intent = new Intent(LogInActivity.this, MainActivity.class);
+                intent.putExtra("authenticated", true);  // Indiquer que l'authentification a réussi
                 startActivity(intent);
-                finish(); // Fermer l'écran de connexion
+                finish();
             }
         });
     }
