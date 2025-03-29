@@ -1,5 +1,7 @@
 package com.yassine_roma_ariane.ray.viewModel;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -14,7 +16,7 @@ public class CompteUtilisateurViewModel extends ViewModel {
 
     private final MutableLiveData<List<CompteUtilisateur>> comptesMutable = new MutableLiveData<>();
     private final MutableLiveData<String> messageMutable = new MutableLiveData<>();
-    private final MutableLiveData<Boolean> estAuthentifier = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> estAuthentifier = new MutableLiveData<>(false);
 
     public CompteUtilisateurViewModel() {
         repository = new CompteRepository();
@@ -62,6 +64,7 @@ public class CompteUtilisateurViewModel extends ViewModel {
 
     public void authentifierCompte(String courriel, String mdp){
         repository.authentifierCompte(courriel, mdp, new CompteRepository.AuthentiferCompteCallback() {
+
             @Override
             public void onAuthentificationReussie(boolean success) {
                 if (success){

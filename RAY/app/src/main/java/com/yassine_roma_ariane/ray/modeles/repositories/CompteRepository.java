@@ -58,6 +58,6 @@ public class CompteRepository {
                 Log.e("CompteRepository","Erreur d'authenfication",e);
                 callback.onError("Erreur: " + e.getMessage());
             }
-        });
+        }).start();
     }
 }
