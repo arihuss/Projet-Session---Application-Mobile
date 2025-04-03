@@ -17,4 +17,8 @@
     <string name="_02">0</string>
     <string name="_50_000">50 000$</string>
     <string name="rechercher">Rechercher</string>
+    <string name="_100">100$</string>
+    <string name="description_du_voyage">Description du voyage....</string>
+    <string name="titre">Titre</string>
+    <string name="image_de_l_evenement">Image de l\'evenement</string>
 </resources>

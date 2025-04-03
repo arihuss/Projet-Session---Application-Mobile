@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/srcView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/noir"
@@ -9,128 +10,130 @@
     tools:context=".vues.AccueilFragment">
 
     <LinearLayout
+        android:id="@+id/lvMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-    <!-- Filter Widget with different background color -->
-    <LinearLayout
-        android:id="@+id/filter_widget"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/header"
-        android:orientation="vertical"
-        android:padding="20dp"
-        android:gravity="center_vertical">
-
-        <AutoCompleteTextView
-            android:id="@+id/autoCompleteTextView"
-            android:layout_width="366dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/btn_connexion"
-            android:fontFamily="@font/inter"
-            android:hint="@string/destination"
-            android:layout_marginTop="55dp"
-            android:layout_marginBottom="20dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="10dp"
-            android:textColorHint="@color/noir" />
-
+        <!-- Filter Widget with different background color -->
         <LinearLayout
+            android:id="@+id/lvWidget"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="20dp"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:background="@color/header"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="20dp">
 
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="176dp"
-                android:layout_height="45dp"
+            <AutoCompleteTextView
+                android:id="@+id/autoTxtDestination"
+                android:layout_width="366dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="55dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/btn_connexion"
                 android:fontFamily="@font/inter"
+                android:hint="@string/destination"
                 android:paddingStart="20dp"
-                android:paddingEnd="0dp"/>
+                android:paddingEnd="10dp"
+                android:textColorHint="@color/noir" />
 
-            <Spinner
-                android:id="@+id/spinner2"
-                android:layout_width="176dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="15dp"
-                android:background="@drawable/btn_connexion"
-                android:fontFamily="@font/inter"
-                android:paddingStart="20dp"
-                android:paddingEnd="0dp"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="@font/inter"
-            android:text="@string/budget"
-            android:textColor="@color/blanc"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <SeekBar
-            android:id="@+id/seekBar"
-            android:layout_width="390dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="5dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="112dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter"
-                android:text="@string/_0"
-                android:textColor="@color/blanc" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="120dp"
+            <LinearLayout
+                android:id="@+id/lvSpinner"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fontFamily="@font/inter"
-                android:text="@string/_02"
-                android:textAlignment="center"
-                android:textColor="@color/blanc" />
+                android:layout_marginBottom="20dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spType"
+                    android:layout_width="176dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/btn_connexion"
+                    android:fontFamily="@font/inter"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="0dp" />
+
+                <Spinner
+                    android:id="@+id/spinner2"
+                    android:layout_width="176dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/btn_connexion"
+                    android:fontFamily="@font/inter"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="0dp" />
+
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/textView3"
-                android:layout_width="136dp"
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/inter"
-                android:text="@string/_50_000"
-                android:textAlignment="textEnd"
-                android:textColor="@color/blanc" />
+                android:text="@string/budget"
+                android:textColor="@color/blanc"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="390dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="5dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="112dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:text="@string/_0"
+                    android:textColor="@color/blanc" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/inter"
+                    android:text="@string/_02"
+                    android:textAlignment="center"
+                    android:textColor="@color/blanc" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="136dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:text="@string/_50_000"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/blanc" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/rechercher"
+                android:textColor="@color/noir"
+                android:textSize="16sp" />
+
+            <!--Filters-->
         </LinearLayout>
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="@font/inter"
-            android:text="@string/rechercher"
-            android:textColor="@color/noir"
-            android:textSize="16sp" />
-
-        <!--Filters-->
-    </LinearLayout>
 
         <!-- ListView for displaying items -->
         <ListView
