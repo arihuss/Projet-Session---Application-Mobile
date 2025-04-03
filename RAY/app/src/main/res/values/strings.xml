@@ -11,4 +11,10 @@
     <string name="se_connecter">Se connecter</string>
     <string name="pas_de_compte">Pas de compte ?</string>
     <string name="cliquez_ici_pour_se_cr_er_un_compte"><u>Cliquez ici pour se créer un compte</u></string>
+    <string name="destination">Destination</string>
+    <string name="budget">Budget</string>
+    <string name="_0">0$</string>
+    <string name="_02">0</string>
+    <string name="_50_000">50 000$</string>
+    <string name="rechercher">Rechercher</string>
 </resources>
