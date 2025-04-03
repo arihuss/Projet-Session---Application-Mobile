@@ -29,7 +29,7 @@ public class HttpJsonService {
         OkHttpClient okHttpClient = new OkHttpClient();
 
         Request request = new Request.Builder()
-                .url(URL_POINT_ENTREE+"/clients")
+                .url(URL_POINT_ENTREE+ "/clients")
                 .build();
 
         Response response = okHttpClient.newCall(request).execute();
