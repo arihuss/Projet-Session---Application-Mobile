@@ -50,16 +50,16 @@
                 <Spinner
                     android:id="@+id/spType"
                     android:layout_width="176dp"
-                    android:layout_height="45dp"
+                    android:layout_height="48dp"
                     android:background="@drawable/btn_connexion"
                     android:fontFamily="@font/inter"
                     android:paddingStart="20dp"
                     android:paddingEnd="0dp" />
 
                 <Spinner
-                    android:id="@+id/spinner2"
+                    android:id="@+id/spDate"
                     android:layout_width="176dp"
-                    android:layout_height="45dp"
+                    android:layout_height="48dp"
                     android:layout_marginStart="15dp"
                     android:background="@drawable/btn_connexion"
                     android:fontFamily="@font/inter"
@@ -69,7 +69,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/txtBudget"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -81,13 +81,14 @@
                 android:textStyle="bold" />
 
             <SeekBar
-                android:id="@+id/seekBar"
+                android:id="@+id/sbBudget"
                 android:layout_width="390dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="5dp" />
 
             <LinearLayout
+                android:id="@+id/lvPrix"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
@@ -95,7 +96,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/txtDebut"
                     android:layout_width="112dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter"
@@ -103,7 +104,7 @@
                     android:textColor="@color/blanc" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/txtPrix"
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/inter"
@@ -112,7 +113,7 @@
                     android:textColor="@color/blanc" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/txtFin"
                     android:layout_width="136dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter"
@@ -122,14 +123,13 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/btnRechercher"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/inter"
                 android:text="@string/rechercher"
-                android:textColor="@color/noir"
                 android:textSize="16sp" />
 
             <!--Filters-->
@@ -137,7 +137,7 @@
 
         <!-- ListView for displaying items -->
         <ListView
-            android:id="@+id/list_view"
+            android:id="@+id/lvVoyages"
             android:layout_width="match_parent"
             android:layout_height="560dp"
             android:layout_marginTop="16dp"

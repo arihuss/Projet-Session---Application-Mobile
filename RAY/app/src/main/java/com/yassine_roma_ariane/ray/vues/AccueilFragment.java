@@ -7,6 +7,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SeekBar;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.yassine_roma_ariane.ray.R;
 
@@ -16,6 +22,15 @@ import com.yassine_roma_ariane.ray.R;
  * create an instance of this fragment.
  */
 public class AccueilFragment extends Fragment {
+
+    private AutoCompleteTextView autoTxtDestination;
+    private Spinner spType;
+    private Spinner spDate;
+    private SeekBar sbBudget;
+    private TextView txtPrix;
+    private Button btnRechercher;
+    private ListView lvVoyages;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,5 +77,19 @@ public class AccueilFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_accueil, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
+
+        autoTxtDestination = view.findViewById(R.id.autoTxtDestination); // Replace with your actual ID
+        spType = view.findViewById(R.id.spType); // Replace with your actual ID
+        spDate = view.findViewById(R.id.spDate); // Replace with your actual ID
+        sbBudget = view.findViewById(R.id.sbBudget); // Replace with your actual ID
+        txtPrix = view.findViewById(R.id.txtPrix); // Replace with your actual ID
+        btnRechercher = view.findViewById(R.id.btnRechercher); // Replace with your actual ID
+        lvVoyages = view.findViewById(R.id.lvVoyages); // Replace with your actual ID
+
     }
 }

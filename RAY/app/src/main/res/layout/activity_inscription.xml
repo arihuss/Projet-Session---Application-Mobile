@@ -21,7 +21,7 @@
                 app:srcCompat="@drawable/ray_logo" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/txtDebut"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter"
@@ -44,7 +44,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/txtPrix"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter"
@@ -53,7 +53,7 @@
                 android:textColor="@color/blanc"
                 android:textSize="24sp" />
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/txtFin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter"
@@ -63,7 +63,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/txtBudget"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter"
