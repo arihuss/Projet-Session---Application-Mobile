@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -109,6 +110,8 @@ public class AccueilFragment extends Fragment {
         txtPrix = view.findViewById(R.id.txtPrix); // Replace with your actual ID
         btnRechercher = view.findViewById(R.id.btnRechercher); // Replace with your actual ID
         lvVoyages = view.findViewById(R.id.lvVoyages); // Replace with your actual ID
+        lvVoyages.setNestedScrollingEnabled(false);
+
 
         goToDetails =
                 registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -127,6 +130,7 @@ public class AccueilFragment extends Fragment {
             public void onChanged(List<Voyage> voyages) {
                 if (voyages != null){
                     adaptateur.setVoyages(voyages);
+                    setListViewHeightBasedOnChildren(lvVoyages);
                     Toast.makeText(getActivity(), voyages.size() + " voyages chargés", Toast.LENGTH_SHORT).show();
                 }else {
                     //Si la liste est nulle, un Toast indique une erreur de chargement.
@@ -156,6 +160,23 @@ public class AccueilFragment extends Fragment {
         });
 
         viewModel.getVoyages();
+    }
+
+    public void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) return;
+
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight() + listView.getDividerHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight;
+        listView.setLayoutParams(params);
+        listView.requestLayout();
     }
 
 }
