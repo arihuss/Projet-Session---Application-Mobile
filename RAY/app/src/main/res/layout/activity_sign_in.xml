@@ -1,10 +1,287 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".vues.SignInActivity">
+    android:background="@color/noir">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ray_logo" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:gravity="center_horizontal"
+                    android:text="@string/inscription"
+                    android:textColor="@color/blanc"
+                    android:textSize="30sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_end="83dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter"
+                android:paddingStart="40dp"
+                android:text="@string/pr_nom"
+                android:textColor="@color/blanc"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/edtPrenom"
+                android:layout_width="350dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/connexion_input"
+                android:fontFamily="@font/inter"
+                android:gravity="start|center_vertical"
+                android:hint="@string/jane"
+                android:paddingStart="12dp"
+                android:textColor="@color/blanc"
+                android:textColorHint="#929292"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter"
+                android:paddingStart="40dp"
+                android:text="@string/nom"
+                android:textColor="@color/blanc"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/edtNom"
+                android:layout_width="350dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/connexion_input"
+                android:fontFamily="@font/inter"
+                android:gravity="start|center_vertical"
+                android:hint="@string/doe"
+                android:paddingStart="12dp"
+                android:textColor="@color/blanc"
+                android:textColorHint="#929292"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter"
+                android:paddingStart="40dp"
+                android:text="@string/courriel"
+                android:textColor="@color/blanc"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/edtCourriel"
+                android:layout_width="350dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/connexion_input"
+                android:fontFamily="@font/inter"
+                android:gravity="start|center_vertical"
+                android:hint="@string/janedoe_sample_com"
+                android:inputType="textWebEmailAddress"
+                android:paddingStart="12dp"
+                android:textColor="@color/blanc"
+                android:textColorHint="#929292"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter"
+                android:paddingStart="40dp"
+                android:text="@string/ge"
+                android:textColor="@color/blanc"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/edtAge"
+                android:layout_width="350dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/connexion_input"
+                android:fontFamily="@font/inter"
+                android:gravity="start|center_vertical"
+                android:hint="@string/ex_27"
+                android:inputType="number"
+                android:paddingStart="12dp"
+                android:textColor="@color/blanc"
+                android:textColorHint="#929292"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter"
+                android:paddingStart="40dp"
+                android:text="@string/t_l_phone"
+                android:textColor="@color/blanc"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/edtTelephone"
+                android:layout_width="350dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/connexion_input"
+                android:fontFamily="@font/inter"
+                android:gravity="start|center_vertical"
+                android:hint="@string/_514_555_5555"
+                android:inputType="phone"
+                android:paddingStart="12dp"
+                android:textColor="@color/blanc"
+                android:textColorHint="#929292"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter"
+                android:paddingStart="40dp"
+                android:text="@string/adresse"
+                android:textColor="@color/blanc"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/edtAdresse"
+                android:layout_width="350dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/connexion_input"
+                android:fontFamily="@font/inter"
+                android:gravity="start|center_vertical"
+                android:hint="@string/ex_123_rue_st_catherine"
+                android:inputType="textPostalAddress"
+                android:paddingStart="12dp"
+                android:textColor="@color/blanc"
+                android:textColorHint="#929292"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter"
+                android:paddingStart="40dp"
+                android:text="@string/mot_de_passe2"
+                android:textColor="@color/blanc"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/edtMdp"
+                android:layout_width="350dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/connexion_input"
+                android:fontFamily="@font/inter"
+                android:gravity="start|center_vertical"
+                android:hint="@string/stars"
+                android:inputType="textPassword"
+                android:paddingStart="12dp"
+                android:textColor="@color/blanc"
+                android:textColorHint="#929292"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter"
+                android:paddingStart="37dp"
+                android:text="@string/confirmation_du_mot_de_passe"
+                android:textColor="@color/blanc"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/edtMdpConfirme"
+                android:layout_width="350dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/connexion_input"
+                android:fontFamily="@font/inter"
+                android:gravity="start|center_vertical"
+                android:hint="@string/retapez_le_mot_de_passe"
+                android:inputType="textPassword"
+                android:paddingStart="12dp"
+                android:textColor="@color/blanc"
+                android:textColorHint="#929292"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnInscrire"
+                android:layout_width="218dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/btn_connexion"
+                android:fontFamily="@font/inter"
+                android:text="@string/s_inscire"
+                android:textColor="@color/blanc"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/txtRetour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="68dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/retour_la_connexion"
+                android:textColor="@color/blanc"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
