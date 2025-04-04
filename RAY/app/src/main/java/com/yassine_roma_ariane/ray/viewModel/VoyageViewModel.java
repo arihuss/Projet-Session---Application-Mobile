@@ -2,6 +2,7 @@ package com.yassine_roma_ariane.ray.viewModel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.yassine_roma_ariane.ray.modeles.Voyage;
 
@@ -9,7 +10,7 @@ import com.yassine_roma_ariane.ray.modeles.repositories.VoyageRepository;
 
 import java.util.List;
 
-public class VoyageViewModel {
+public class VoyageViewModel extends ViewModel {
 
     private VoyageRepository repository;
 

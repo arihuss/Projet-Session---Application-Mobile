@@ -1,33 +1,86 @@
 package com.yassine_roma_ariane.ray.vues.adaptateurs;
 
-import android.os.Bundle;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.res.Resources;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
 import com.yassine_roma_ariane.ray.R;
+import com.yassine_roma_ariane.ray.modeles.Voyage;
 
-public class VoyageAdapter extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
 
-    private TextView txtTitre;
-    private TextView txtHeaderPrix;
-    private ImageView imgVoyage;
-    private TextView txtDesc;
+public class VoyageAdapter extends ArrayAdapter {
+
+
+    private Context contexte;
+    private int viewResourceId;
+    private Resources resources;
+
+    private List<Voyage> voyages = new ArrayList<>();
+    public VoyageAdapter(@NonNull Context context, int resource) {
+        super(context, resource);
+        this.contexte = context;
+        this.viewResourceId = resource;
+        this.resources = contexte.getResources();
+    }
+
+    public void setVoyages(List<Voyage> voyages) {
+        this.voyages.clear(); // Clear existing data
+        this.voyages.addAll(voyages); // Add new data
+        notifyDataSetChanged(); // Refresh UI
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_voyage_adapter);
+    public int getCount() {
+        return voyages.size();
+    }
 
-        txtTitre = findViewById(R.id.txtTitre);
-        txtHeaderPrix = findViewById(R.id.txtHeaderPrix);
-        imgVoyage = findViewById(R.id.imgVoyage);
-        txtDesc = findViewById(R.id.txtDesc);
+    public Voyage getItem(int position) {
+        return voyages.get(position);
+    }
+
+    @SuppressLint("NewApi")
+    @NonNull
+    @Override
+    public View getView(int position, @Nullable View view, @NonNull ViewGroup parent) {
+
+        if (view == null) {
+            LayoutInflater layoutInflater = (LayoutInflater) contexte.getSystemService(Context.
+                    LAYOUT_INFLATER_SERVICE);
+            view = layoutInflater.inflate(this.viewResourceId, parent, false);
+        }
+
+        Voyage voyage = getItem(position);
+
+        if (voyage != null) {
+            final TextView txtTitre = (TextView) view.findViewById(R.id.txtTitre);
+            final TextView txtHeaderPrix = (TextView) view.findViewById(R.id.txtHeaderPrix);
+            final TextView txtDesc = (TextView) view.findViewById(R.id.txtDesc);
+            final ImageView imgVoyage = (ImageView) view.findViewById(R.id.imgVoyage);
+
+            if (voyage != null) {
+                txtTitre.setText(voyage.getNom_voyage());
+                txtHeaderPrix.setText(voyage.getPrix() + "$");
+                txtDesc.setText(voyage.getDescription());
+
+                Glide.with(contexte)
+                        .load(voyage.getImage_url())  // Charge l'image depuis l'URL
+                        .placeholder(R.drawable.ray_logo) // Image par défaut en cas de chargement lent
+                        .error(R.drawable.ray_logo) // Image en cas d'erreur
+                        .into(imgVoyage); // Applique à l'ImageView
+            }
+        }
+        return view;
     }
 }

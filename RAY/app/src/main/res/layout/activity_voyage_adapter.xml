@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/header"
-    android:padding="20dp"
+    android:background="@drawable/listitem"
+    android:padding="15dp"
     tools:context=".vues.adaptateurs.VoyageAdapter">
 
     <LinearLayout
@@ -18,7 +18,7 @@
 
         <TextView
             android:id="@+id/txtTitre"
-            android:layout_width="wrap_content"
+            android:layout_width="34dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/titre"
@@ -40,11 +40,11 @@
 
     <ImageView
         android:id="@+id/imgVoyage"
-        android:contentDescription="@string/image_de_l_evenement"
         android:layout_width="match_parent"
-        android:layout_height="142dp"
+        android:layout_height="184dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
+        android:contentDescription="@string/image_de_l_evenement"
         app:srcCompat="@android:drawable/ic_dialog_alert" />
 
     <TextView

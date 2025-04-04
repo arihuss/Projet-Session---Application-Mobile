@@ -42,7 +42,7 @@
             <LinearLayout
                 android:id="@+id/lvSpinner"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
@@ -106,7 +106,7 @@
                 <TextView
                     android:id="@+id/txtPrix"
                     android:layout_width="120dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:fontFamily="@font/inter"
                     android:text="@string/_02"
                     android:textAlignment="center"
@@ -139,9 +139,13 @@
         <ListView
             android:id="@+id/lvVoyages"
             android:layout_width="match_parent"
-            android:layout_height="560dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="16dp"
-            android:dividerHeight="20dp" />
+            android:layout_marginRight="20dp"
+            android:dividerHeight="20dp"
+            android:layout_marginBottom="120dp"
+            />
 
     </LinearLayout>
 </ScrollView>

@@ -14,6 +14,10 @@ public class Voyage {
     private String type_de_voyage;
     private String activites_incluses;
 
+    public Voyage() {
+        // Constructeur sans argument requis par Jackson
+    }
+
     // Constructor
     public Voyage(int id, String nom_voyage, String description, double prix,
                   String destination, String image_url, int duree_jours,
@@ -39,11 +43,11 @@ public class Voyage {
         this.id = id;
     }
 
-    public String getNomVoyage() {
+    public String getNom_voyage() {
         return nom_voyage;
     }
 
-    public void setNomVoyage(String nom_voyage) {
+    public void setNom_voyage(String nom_voyage) {
         this.nom_voyage = nom_voyage;
     }
 
@@ -71,19 +75,19 @@ public class Voyage {
         this.destination = destination;
     }
 
-    public String getImageUrl() {
+    public String getImage_url() {
         return image_url;
     }
 
-    public void setImageUrl(String image_url) {
+    public void setImage_url(String image_url) {
         this.image_url = image_url;
     }
 
-    public int getDureeJours() {
+    public int getDuree_jours() {
         return duree_jours;
     }
 
-    public void setDureeJours(int duree_jours) {
+    public void setDuree_jours(int duree_jours) {
         this.duree_jours = duree_jours;
     }
 
@@ -95,19 +99,19 @@ public class Voyage {
         this.trips = trips;
     }
 
-    public String getTypeDeVoyage() {
+    public String getType_de_voyage() {
         return type_de_voyage;
     }
 
-    public void setTypeDeVoyage(String type_de_voyage) {
+    public void setType_de_voyage(String type_de_voyage) {
         this.type_de_voyage = type_de_voyage;
     }
 
-    public String getActivitesIncluses() {
+    public String getActivites_incluses() {
         return activites_incluses;
     }
 
-    public void setActivitesIncluses(String activites_incluses) {
+    public void setActivites_incluses(String activites_incluses) {
         this.activites_incluses = activites_incluses;
     }
 }

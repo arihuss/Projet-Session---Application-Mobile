@@ -4,6 +4,8 @@ public class Trip {
     private String date;
     private int nb_places_disponibles;
 
+    public Trip() {
+    }
     // Constructor
     public Trip(String date, int nb_places_disponibles) {
         this.date = date;
@@ -19,11 +21,11 @@ public class Trip {
         this.date = date;
     }
 
-    public int getNbPlacesDisponibles() {
+    public int getNb_places_disponibles() {
         return nb_places_disponibles;
     }
 
-    public void setNbPlacesDisponibles(int nb_places_disponibles) {
+    public void setNb_places_disponibles(int nb_places_disponibles) {
         this.nb_places_disponibles = nb_places_disponibles;
     }
 }

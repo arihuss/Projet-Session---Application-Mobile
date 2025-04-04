@@ -118,7 +118,7 @@ public class HttpJsonService {
             }
 
             if (type != null && !type.isEmpty()) {
-                if (!voyage.getTypeDeVoyage().equalsIgnoreCase(type)) {
+                if (!voyage.getType_de_voyage().equalsIgnoreCase(type)) {
                     correspond = false;
                 }
             }
