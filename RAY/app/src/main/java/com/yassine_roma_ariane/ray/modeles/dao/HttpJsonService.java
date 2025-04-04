@@ -5,11 +5,13 @@ import android.util.Log;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yassine_roma_ariane.ray.modeles.CompteUtilisateur;
+import com.yassine_roma_ariane.ray.modeles.Trip;
 import com.yassine_roma_ariane.ray.modeles.Voyage;
 
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -70,11 +72,85 @@ public class HttpJsonService {
 
     //REQUETES VOYAGES
     public List<Voyage> getVoyages() throws IOException, JSONException{
-        //get tout les voyages pour l'afficher a l'accueil
+        //get tous les voyages pour la prochaine fonction
+        OkHttpClient okHttpClient = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url(URL_POINT_ENTREE+ "/voyages")
+                .build();
+
+        Response response = okHttpClient.newCall(request).execute();
+
+        ResponseBody responseBody = response.body();
+        String jsonStr = responseBody.string();
+        List<Voyage> voyages = null;
+
+        Log.d("HttpJsonService:getVoyages",jsonStr);
+
+        if(jsonStr.length()>0){
+            ObjectMapper mapper = new ObjectMapper();
+            try {
+                voyages = Arrays.asList(mapper.readValue(jsonStr,Voyage[].class));
+            }catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+            return voyages;
+        }
         return null;
     }
 
+    public List<Voyage> getVoyagesByFilter(String destination, String type, String date, double budget) throws IOException, JSONException {
+        List<Voyage> tousLesVoyages = getVoyages(); // récupère tous les voyages
+        List<Voyage> voyagesFiltres = new ArrayList<>();
 
-    //finir requetes voyages
+        if (tousLesVoyages == null) {
+            return voyagesFiltres; // retourne une liste vide
+        }
+
+        for (Voyage voyage : tousLesVoyages) {
+            boolean correspond = true;
+
+            // Vérifier chaque filtre un par un, s'il est défini
+            if (destination != null && !destination.isEmpty()) {
+                if (!voyage.getDestination().equalsIgnoreCase(destination)) {
+                    correspond = false;
+                }
+            }
+
+            if (type != null && !type.isEmpty()) {
+                if (!voyage.getTypeDeVoyage().equalsIgnoreCase(type)) {
+                    correspond = false;
+                }
+            }
+
+            if (date != null && !date.isEmpty()) {
+                boolean dateTrouvee = false;
+
+                for (Trip trip : voyage.getTrips()) {
+                    if (trip.getDate().equals(date)) { // Vérifie si un des trips correspond à la date
+                        dateTrouvee = true;
+                        break; // On arrête dès qu'on trouve une correspondance
+                    }
+                }
+
+                if (!dateTrouvee) {
+                    correspond = false; // Exclut ce voyage si aucun trip ne correspond
+                }
+            }
+
+            if (budget > 0) {
+                if (voyage.getPrix() > budget) {
+                    correspond = false;
+                }
+            }
+
+            // Si tous les filtres passent, ajouter à la liste
+            if (correspond) {
+                voyagesFiltres.add(voyage);
+            }
+        }
+
+        return voyagesFiltres;
+    }
 
 }
