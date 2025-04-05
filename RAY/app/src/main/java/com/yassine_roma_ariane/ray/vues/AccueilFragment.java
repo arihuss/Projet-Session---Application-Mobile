@@ -8,6 +8,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListAdapter;
@@ -112,7 +114,6 @@ public class AccueilFragment extends Fragment {
         lvVoyages = view.findViewById(R.id.lvVoyages); // Replace with your actual ID
         lvVoyages.setNestedScrollingEnabled(false);
 
-
         goToDetails =
                 registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
                     @Override
@@ -149,6 +150,15 @@ public class AccueilFragment extends Fragment {
             }
         });
 
+        viewModel.getDestinations().observe(getViewLifecycleOwner(), new Observer<List<String>>() {
+            @Override
+            public void onChanged(List<String> destinationList) {
+                ArrayAdapter<String> autoAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, destinationList);
+                autoTxtDestination.setAdapter(autoAdapter);
+                autoTxtDestination.setThreshold(1);
+            }
+        });
+
         lvVoyages.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -160,6 +170,7 @@ public class AccueilFragment extends Fragment {
         });
 
         viewModel.getVoyages();
+        viewModel.findDestinations();
     }
 
     public void setListViewHeightBasedOnChildren(ListView listView) {
@@ -178,5 +189,6 @@ public class AccueilFragment extends Fragment {
         listView.setLayoutParams(params);
         listView.requestLayout();
     }
+
 
 }
