@@ -16,6 +16,9 @@ public class CompteUtilisateur {
         id_increment++;     // increment le compteur d'id
     }
 
+    public CompteUtilisateur() {
+    }
+
     public int getId() {
         return id;
     }

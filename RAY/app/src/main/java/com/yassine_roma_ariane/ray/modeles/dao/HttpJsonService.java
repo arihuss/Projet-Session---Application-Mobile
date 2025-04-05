@@ -40,8 +40,6 @@ public class HttpJsonService {
         String jsonStr = responseBody.string();
         List<CompteUtilisateur> comptes = null;
 
-        Log.d("HttpJsonService:getComptes",jsonStr);
-
         if(jsonStr.length()>0){
             ObjectMapper mapper = new ObjectMapper();
             try {
@@ -85,7 +83,6 @@ public class HttpJsonService {
         String jsonStr = responseBody.string();
         List<Voyage> voyages = null;
 
-        Log.d("HttpJsonService:getVoyages",jsonStr);
 
         if(jsonStr.length()>0){
             ObjectMapper mapper = new ObjectMapper();
