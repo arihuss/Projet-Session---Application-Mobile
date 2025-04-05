@@ -61,7 +61,7 @@
                     android:id="@+id/spType"
                     android:layout_width="176dp"
                     android:layout_height="48dp"
-                    android:background="@drawable/btn_connexion"
+                    android:background="@drawable/spinner_accueil"
                     android:fontFamily="@font/inter"
                     android:paddingStart="20dp"
                     android:paddingEnd="0dp" />
@@ -71,7 +71,7 @@
                     android:layout_width="176dp"
                     android:layout_height="48dp"
                     android:layout_marginStart="15dp"
-                    android:background="@drawable/btn_connexion"
+                    android:background="@drawable/spinner_accueil"
                     android:fontFamily="@font/inter"
                     android:paddingStart="20dp"
                     android:paddingEnd="0dp" />

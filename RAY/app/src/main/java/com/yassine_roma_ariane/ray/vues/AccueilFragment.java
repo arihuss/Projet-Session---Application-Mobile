@@ -159,6 +159,24 @@ public class AccueilFragment extends Fragment {
             }
         });
 
+        viewModel.getTypesVoyages().observe(getViewLifecycleOwner(), new Observer<List<String>>() {
+            @Override
+            public void onChanged(List<String> typesList) {
+                ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, typesList);
+                spType.setAdapter(spinnerAdapter);
+            }
+        });
+
+        viewModel.getDatesVoyages().observe(getViewLifecycleOwner(), new Observer<List<String>>() {
+            @Override
+            public void onChanged(List<String> datesList) {
+                ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, datesList);
+                spDate.setAdapter(spinnerAdapter);
+            }
+        });
+
+
+
         lvVoyages.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -171,6 +189,8 @@ public class AccueilFragment extends Fragment {
 
         viewModel.getVoyages();
         viewModel.findDestinations();
+        viewModel.findTypesVoyages();
+        viewModel.findDatesVoyages();
     }
 
     public void setListViewHeightBasedOnChildren(ListView listView) {
