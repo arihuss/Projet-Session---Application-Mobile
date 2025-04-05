@@ -137,6 +137,39 @@ public class VoyageViewModel extends ViewModel {
         });
     }
 
+    public LiveData<Voyage> getVoyageParId(int id) {
+        MutableLiveData<Voyage> voyageLiveData = new MutableLiveData<>();
+        List<Voyage> listeVoyages = voyagesMutable.getValue();
 
+        if (listeVoyages != null) {
+            for (Voyage v : listeVoyages) {
+                if (v.getId() == id) {
+                    voyageLiveData.setValue(v);
+                    return voyageLiveData;
+                }
+            }
+        }
+
+        // Si la liste est vide ou le voyage introuvable, on peut essayer de recharger les données
+        repository.fetchVoyagesFromAPI(new VoyageRepository.FetchVoyageCallback() {
+            @Override
+            public void onFetch(List<Voyage> voyages) {
+                for (Voyage v : voyages) {
+                    if (v.getId() == id) {
+                        voyageLiveData.postValue(v);
+                        return;
+                    }
+                }
+                messageMutable.postValue("Voyage introuvable.");
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                messageMutable.postValue("Erreur de chargement du voyage : " + errorMessage);
+            }
+        });
+
+        return voyageLiveData;
+    }
 
 }
