@@ -135,11 +135,11 @@ public class HttpJsonService {
                 }
             }
 
-            if (budget > 0) {
+
                 if (voyage.getPrix() > budget) {
                     correspond = false;
                 }
-            }
+
 
             // Si tous les filtres passent, ajouter à la liste
             if (correspond) {

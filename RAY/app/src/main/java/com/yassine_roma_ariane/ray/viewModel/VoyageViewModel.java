@@ -17,7 +17,6 @@ public class VoyageViewModel extends ViewModel {
     private VoyageRepository repository;
 
     private final MutableLiveData<List<Voyage>> voyagesMutable = new MutableLiveData<>();
-    private final MutableLiveData<List<Voyage>> voyagesFiltre = new MutableLiveData<>();
     private final MutableLiveData<String> messageMutable = new MutableLiveData<>();
     private final MutableLiveData<List<String>> destinations = new MutableLiveData<>();
     private final MutableLiveData<List<String>> typesVoyages = new MutableLiveData<>();
@@ -95,6 +94,7 @@ public class VoyageViewModel extends ViewModel {
             @Override
             public void onFetch(List<Voyage> voyages) {
                 List<String> listeTypesVoyages = new ArrayList<>();
+                listeTypesVoyages.add("Tous");
                 for (Voyage voyage : voyages){
                     String type = voyage.getType_de_voyage();
                     if (!listeTypesVoyages.contains(type)) {
@@ -118,6 +118,7 @@ public class VoyageViewModel extends ViewModel {
             @Override
             public void onFetch(List<Voyage> voyages) {
                 List<String> listeDatesVoyages = new ArrayList<>();
+                listeDatesVoyages.add("Tous");
                 for (Voyage voyage : voyages){
                     for (Trip trip : voyage.getTrips()) {
                         String date = trip.getDate();

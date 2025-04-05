@@ -39,7 +39,7 @@ import java.util.List;
  * Use the {@link AccueilFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AccueilFragment extends Fragment {
+public class AccueilFragment extends Fragment implements View.OnClickListener {
 
     private AutoCompleteTextView autoTxtDestination;
     private Spinner spType;
@@ -113,6 +113,10 @@ public class AccueilFragment extends Fragment {
         btnRechercher = view.findViewById(R.id.btnRechercher); // Replace with your actual ID
         lvVoyages = view.findViewById(R.id.lvVoyages); // Replace with your actual ID
         lvVoyages.setNestedScrollingEnabled(false);
+        btnRechercher.setOnClickListener(this);
+        txtPrix.setText(sbBudget.getProgress()+"$");
+
+
 
         goToDetails =
                 registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -164,6 +168,7 @@ public class AccueilFragment extends Fragment {
             public void onChanged(List<String> typesList) {
                 ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, typesList);
                 spType.setAdapter(spinnerAdapter);
+                spType.setSelection(0);
             }
         });
 
@@ -172,6 +177,31 @@ public class AccueilFragment extends Fragment {
             public void onChanged(List<String> datesList) {
                 ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, datesList);
                 spDate.setAdapter(spinnerAdapter);
+                spDate.setSelection(0);
+            }
+        });
+
+        sbBudget.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // This method is called whenever the progress level is changed
+                // Update the TextView with the current progress value
+                txtPrix.setText(String.valueOf(progress)+"$");
+
+                // If you want to format the value (e.g., as currency):
+                // valueTextView.setText("$" + progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // Called when the user starts interacting with the SeekBar
+                // Optional implementation
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // Called when the user stops interacting with the SeekBar
+                // Optional implementation
             }
         });
 
@@ -191,6 +221,8 @@ public class AccueilFragment extends Fragment {
         viewModel.findDestinations();
         viewModel.findTypesVoyages();
         viewModel.findDatesVoyages();
+
+
     }
 
     public void setListViewHeightBasedOnChildren(ListView listView) {
@@ -211,4 +243,23 @@ public class AccueilFragment extends Fragment {
     }
 
 
+
+
+    @Override
+    public void onClick(View v) {
+
+        double budget = sbBudget.getProgress();
+        String destination = null;
+        String type = null;
+        String date = null;
+        if (!autoTxtDestination.getText().toString().isEmpty()){
+        destination = autoTxtDestination.getText().toString();}
+        date = spDate.getSelectedItem().toString();
+        type = spType.getSelectedItem().toString();
+        if ("Tous".equals(type)) type = null;
+        if ("Tous".equals(date)) date = null;
+
+        viewModel.filterVoyages(destination,type,date,budget);
+    }
 }
+
