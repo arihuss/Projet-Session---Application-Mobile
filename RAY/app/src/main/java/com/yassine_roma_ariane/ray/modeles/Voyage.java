@@ -1,5 +1,6 @@
 package com.yassine_roma_ariane.ray.modeles;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class Voyage {

@@ -1,5 +1,7 @@
 package com.yassine_roma_ariane.ray.modeles;
 
+import java.io.Serializable;
+
 public class Trip {
     private String date;
     private int nb_places_disponibles;

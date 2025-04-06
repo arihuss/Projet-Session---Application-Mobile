@@ -8,6 +8,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListAdapter;
@@ -37,7 +39,7 @@ import java.util.List;
  * Use the {@link AccueilFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AccueilFragment extends Fragment {
+public class AccueilFragment extends Fragment implements View.OnClickListener {
 
     private AutoCompleteTextView autoTxtDestination;
     private Spinner spType;
@@ -111,6 +113,9 @@ public class AccueilFragment extends Fragment {
         btnRechercher = view.findViewById(R.id.btnRechercher); // Replace with your actual ID
         lvVoyages = view.findViewById(R.id.lvVoyages); // Replace with your actual ID
         lvVoyages.setNestedScrollingEnabled(false);
+        btnRechercher.setOnClickListener(this);
+        txtPrix.setText(sbBudget.getProgress()+"$");
+
 
 
         goToDetails =
@@ -149,6 +154,59 @@ public class AccueilFragment extends Fragment {
             }
         });
 
+        viewModel.getDestinations().observe(getViewLifecycleOwner(), new Observer<List<String>>() {
+            @Override
+            public void onChanged(List<String> destinationList) {
+                ArrayAdapter<String> autoAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, destinationList);
+                autoTxtDestination.setAdapter(autoAdapter);
+                autoTxtDestination.setThreshold(1);
+            }
+        });
+
+        viewModel.getTypesVoyages().observe(getViewLifecycleOwner(), new Observer<List<String>>() {
+            @Override
+            public void onChanged(List<String> typesList) {
+                ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, typesList);
+                spType.setAdapter(spinnerAdapter);
+                spType.setSelection(0);
+            }
+        });
+
+        viewModel.getDatesVoyages().observe(getViewLifecycleOwner(), new Observer<List<String>>() {
+            @Override
+            public void onChanged(List<String> datesList) {
+                ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, datesList);
+                spDate.setAdapter(spinnerAdapter);
+                spDate.setSelection(0);
+            }
+        });
+
+        sbBudget.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // This method is called whenever the progress level is changed
+                // Update the TextView with the current progress value
+                txtPrix.setText(String.valueOf(progress)+"$");
+
+                // If you want to format the value (e.g., as currency):
+                // valueTextView.setText("$" + progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // Called when the user starts interacting with the SeekBar
+                // Optional implementation
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // Called when the user stops interacting with the SeekBar
+                // Optional implementation
+            }
+        });
+
+
+
         lvVoyages.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -160,6 +218,11 @@ public class AccueilFragment extends Fragment {
         });
 
         viewModel.getVoyages();
+        viewModel.findDestinations();
+        viewModel.findTypesVoyages();
+        viewModel.findDatesVoyages();
+
+
     }
 
     public void setListViewHeightBasedOnChildren(ListView listView) {
@@ -179,4 +242,24 @@ public class AccueilFragment extends Fragment {
         listView.requestLayout();
     }
 
+
+
+
+    @Override
+    public void onClick(View v) {
+
+        double budget = sbBudget.getProgress();
+        String destination = null;
+        String type = null;
+        String date = null;
+        if (!autoTxtDestination.getText().toString().isEmpty()){
+        destination = autoTxtDestination.getText().toString();}
+        date = spDate.getSelectedItem().toString();
+        type = spType.getSelectedItem().toString();
+        if ("Tous".equals(type)) type = null;
+        if ("Tous".equals(date)) date = null;
+
+        viewModel.filterVoyages(destination,type,date,budget);
+    }
 }
+

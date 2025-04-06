@@ -61,7 +61,7 @@
                     android:id="@+id/spType"
                     android:layout_width="176dp"
                     android:layout_height="48dp"
-                    android:background="@drawable/btn_connexion"
+                    android:background="@drawable/spinner_accueil"
                     android:fontFamily="@font/inter"
                     android:paddingStart="20dp"
                     android:paddingEnd="0dp" />
@@ -71,7 +71,7 @@
                     android:layout_width="176dp"
                     android:layout_height="48dp"
                     android:layout_marginStart="15dp"
-                    android:background="@drawable/btn_connexion"
+                    android:background="@drawable/spinner_accueil"
                     android:fontFamily="@font/inter"
                     android:paddingStart="20dp"
                     android:paddingEnd="0dp" />
@@ -95,7 +95,15 @@
                 android:layout_width="390dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="5dp" />
+                android:layout_marginBottom="5dp"
+                android:progressDrawable="@drawable/seek_bar_accueil"
+                android:thumb="@drawable/seekbar_thumb"
+                android:thumbOffset="0dp"
+                android:splitTrack="false"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:max="2500"
+                android:progress="2000"/>
 
             <LinearLayout
                 android:id="@+id/lvPrix"
@@ -119,6 +127,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter"
                     android:text="@string/_02"
+                    android:textSize="16sp"
                     android:textAlignment="center"
                     android:textColor="@color/blanc" />
 
@@ -127,7 +136,7 @@
                     android:layout_width="136dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter"
-                    android:text="@string/_50_000"
+                    android:text="@string/_2500"
                     android:textAlignment="textEnd"
                     android:textColor="@color/blanc" />
             </LinearLayout>

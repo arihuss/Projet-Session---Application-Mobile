@@ -40,8 +40,6 @@ public class HttpJsonService {
         String jsonStr = responseBody.string();
         List<CompteUtilisateur> comptes = null;
 
-        Log.d("HttpJsonService:getComptes",jsonStr);
-
         if(jsonStr.length()>0){
             ObjectMapper mapper = new ObjectMapper();
             try {
@@ -85,7 +83,6 @@ public class HttpJsonService {
         String jsonStr = responseBody.string();
         List<Voyage> voyages = null;
 
-        Log.d("HttpJsonService:getVoyages",jsonStr);
 
         if(jsonStr.length()>0){
             ObjectMapper mapper = new ObjectMapper();
@@ -138,11 +135,11 @@ public class HttpJsonService {
                 }
             }
 
-            if (budget > 0) {
+
                 if (voyage.getPrix() > budget) {
                     correspond = false;
                 }
-            }
+
 
             // Si tous les filtres passent, ajouter à la liste
             if (correspond) {
