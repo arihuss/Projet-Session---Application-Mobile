@@ -138,7 +138,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             // si toutes les entrées sont validées
             if(isValid) {
                 // Création d'un instance compte
-                CompteUtilisateur nouvCompte = new CompteUtilisateur(prenom, nom, courriel, mdp, tel, adresse);
+                CompteUtilisateur nouvCompte = new CompteUtilisateur(prenom, nom, courriel, mdp, tel, adresse, age);
 
                 // Création du compte
                 CompteUtilisateurViewModel viewModel = new CompteUtilisateurViewModel();

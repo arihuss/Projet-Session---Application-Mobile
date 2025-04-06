@@ -1,6 +1,7 @@
 package com.yassine_roma_ariane.ray.modeles.dao;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,15 +10,19 @@ import com.yassine_roma_ariane.ray.modeles.Trip;
 import com.yassine_roma_ariane.ray.modeles.Voyage;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
@@ -54,7 +59,29 @@ public class HttpJsonService {
 
     public boolean creerCompte(CompteUtilisateur utilisateur) throws IOException,JSONException {
         //creer un compte et le mettre dans le JSON
-        return true;
+        OkHttpClient client = new OkHttpClient();
+        JSONObject obj = new JSONObject();
+
+        // est-ce qu'il faut valider que les informations sont pas null/empty??
+
+        obj.put("prenom", utilisateur.getPrenom());
+        obj.put("nom", utilisateur.getNom());
+        obj.put("age", utilisateur.getAge());
+        obj.put("email", utilisateur.getEmail());
+        obj.put("adresse", utilisateur.getAdresse());
+        obj.put("telephone", utilisateur.getTelephone());
+        obj.put("mdp", utilisateur.getMdp());
+
+        MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+        RequestBody requestBody = RequestBody.create(String.valueOf(obj), JSON);
+        Request request = new Request.Builder()
+                .url(URL_POINT_ENTREE)
+                .post(requestBody)
+                .build();
+
+        Response response = client.newCall(request).execute();
+
+        return response.isSuccessful();
     }
 
     public boolean authentifierCompte(String courriel, String mdp) throws IOException, JSONException{

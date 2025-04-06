@@ -5,13 +5,14 @@ public class CompteUtilisateur {
     private static int id_increment = 1;
     private String nom, prenom, email, mdp, telephone, adresse;
 
-    public CompteUtilisateur(String prenom, String nom, String email, String mdp, String telephone, String adresse) {
+    public CompteUtilisateur(String prenom, String nom, String email, String mdp, String telephone, String adresse, int age) {
         this.prenom = prenom;
         this.nom = nom;
         this.email = email;
         this.mdp = mdp;
         this.telephone = telephone;
         this.adresse = adresse;
+        this.age = age;
         this.id = id_increment; // assigne le current id
         id_increment++;     // increment le compteur d'id
     }
