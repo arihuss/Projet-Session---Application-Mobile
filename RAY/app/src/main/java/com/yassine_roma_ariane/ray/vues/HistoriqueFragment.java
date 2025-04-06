@@ -7,6 +7,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.yassine_roma_ariane.ray.R;
 
@@ -15,7 +19,9 @@ import com.yassine_roma_ariane.ray.R;
  * Use the {@link HistoriqueFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HistoriqueFragment extends Fragment {
+public class HistoriqueFragment extends Fragment implements View.OnClickListener {
+    // Déclaration des variables
+    private ListView lvReservations;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,5 +68,17 @@ public class HistoriqueFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_historique, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // Liaison avec
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }
