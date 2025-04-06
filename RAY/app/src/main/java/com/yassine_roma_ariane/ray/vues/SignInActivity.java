@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.yassine_roma_ariane.ray.R;
 import com.yassine_roma_ariane.ray.modeles.CompteUtilisateur;
 import com.yassine_roma_ariane.ray.modeles.dao.CompteUtilisateurDAO;
+import com.yassine_roma_ariane.ray.viewModel.CompteUtilisateurViewModel;
 
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText edtPrenom, edtNom, edtTelephone, edtAdresse, edtCourriel, edtMdp, edtMdpConfirme, edtAge;
@@ -140,7 +141,9 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 CompteUtilisateur nouvCompte = new CompteUtilisateur(prenom, nom, courriel, mdp, tel, adresse);
 
                 // Création du compte
-                CompteUtilisateurDAO compteDAO = new CompteUtilisateurDAO();
+                CompteUtilisateurViewModel viewModel = new CompteUtilisateurViewModel();
+                viewModel.creerCompte(nouvCompte);
+                viewModel.refreshComptes();  // besoin de le mettre?
             }
         }
         if(v == txtRetour) {
