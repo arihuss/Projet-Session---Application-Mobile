@@ -144,6 +144,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 CompteUtilisateurViewModel viewModel = new CompteUtilisateurViewModel();
                 viewModel.creerCompte(nouvCompte);
                 viewModel.refreshComptes();  // besoin de le mettre?
+                finish();
             }
         }
         if(v == txtRetour) {

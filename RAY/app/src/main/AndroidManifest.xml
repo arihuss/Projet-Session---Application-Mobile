@@ -29,9 +29,7 @@
         <activity
             android:name=".vues.adaptateurs.HistoriqueAdapter"
             android:exported="false" />
-        <activity
-            android:name=".vues.adaptateurs.VoyageAdapter"
-            android:exported="false" />
+
         <activity
             android:name=".vues.MainActivity"
             android:exported="true">
