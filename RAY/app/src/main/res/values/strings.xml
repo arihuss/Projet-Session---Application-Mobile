@@ -40,4 +40,7 @@
     <string name="image_de_l_evenement">Image de l\'evenement</string>
     <string name="_2500">2500$</string>
     <string name="mes_r_servations">Mes Réservations</string>
+    <string name="annuler"><u>Annuler?</u></string>
+    <string name="statut">Statut:</string>
+    <string name="date_de_d_part">Date de départ:</string>
 </resources>
