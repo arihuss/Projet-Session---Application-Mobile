@@ -117,6 +117,24 @@
             android:layout_width="160dp"
             android:layout_height="92dp"
             android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_image"
+            android:clipToOutline="true"
+            android:outlineProvider="background"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+
+
+        <TextView
+            android:id="@+id/tvPrixReserv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:fontFamily="@font/inter"
+            android:gravity="right"
+            android:text="1682 CAD"
+            android:textColor="@color/blanc"
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>
