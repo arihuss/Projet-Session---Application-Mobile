@@ -14,6 +14,10 @@ import com.yassine_roma_ariane.ray.R;
 import com.yassine_roma_ariane.ray.modeles.Trip;
 import com.yassine_roma_ariane.ray.modeles.Voyage;
 import com.yassine_roma_ariane.ray.viewModel.VoyageViewModel;
+import com.yassine_roma_ariane.ray.modeles.Reservation;
+
+import com.yassine_roma_ariane.ray.viewModel.ReservationViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +30,11 @@ public class DetailsActivity extends AppCompatActivity {
     private Button btnReserverMaintenant, btnReserver, btnRetour;
     private EditText edtNombrePersonnes;
     private LinearLayout layoutNombrePersonnes;
-
     private Voyage voyageSelectionne;
     private Trip tripSelectionne;
     private VoyageViewModel viewModel;
+    private ReservationViewModel reservationViewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +56,12 @@ public class DetailsActivity extends AppCompatActivity {
 
         desactiverReservation();
 
+        // Initialisation des ViewModels
+        viewModel = new ViewModelProvider(this).get(VoyageViewModel.class);
+        reservationViewModel = new ViewModelProvider(this).get(ReservationViewModel.class);
+
         int voyageId = getIntent().getIntExtra("ID_VOYAGE", -1);
 
-        viewModel = new ViewModelProvider(this).get(VoyageViewModel.class);
         viewModel.getVoyageParId(voyageId).observe(this, new Observer<Voyage>() {
             @Override
             public void onChanged(Voyage voyage) {
@@ -108,11 +116,26 @@ public class DetailsActivity extends AppCompatActivity {
             double prixTotal = nbPlacesDemandees * voyageSelectionne.getPrix();
             Toast.makeText(this, "Réservation confirmée: " + prixTotal + "$", Toast.LENGTH_LONG).show();
 
-            // Mise à jour : soustraire les places et sauvegarder dans le ViewModel ou serveur
-            tripSelectionne.setNb_places_disponibles(tripSelectionne.getNb_places_disponibles() - nbPlacesDemandees);
+            tripSelectionne.setNb_places_disponibles(
+                    tripSelectionne.getNb_places_disponibles() - nbPlacesDemandees);
             txtPlacesRestantes.setText(tripSelectionne.getNb_places_disponibles() + " places disponibles");
 
-            // TODO : enregistrer la réservation en SQLite ici
+
+            // TODO: Remplacer par l'ID du client actuellement connecté (à récupérer dynamiquement)
+            int clientId = 1;
+
+
+
+            Reservation reservation = new Reservation(
+                    0,
+                    voyageSelectionne.getId(),
+                    clientId,
+                    tripSelectionne.getDate(),
+                    nbPlacesDemandees,
+                    "confirmée"
+            );
+
+            reservationViewModel.ajouterReservation(reservation);
         });
 
         btnRetour.setOnClickListener(v -> finish());
