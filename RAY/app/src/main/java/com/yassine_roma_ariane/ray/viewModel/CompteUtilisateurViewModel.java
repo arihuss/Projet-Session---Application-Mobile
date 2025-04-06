@@ -18,6 +18,13 @@ public class CompteUtilisateurViewModel extends ViewModel {
     private final MutableLiveData<String> messageMutable = new MutableLiveData<>();
     private final MutableLiveData<Boolean> estAuthentifier = new MutableLiveData<>(false);
 
+    // ajout dun LiveData<CompteUtilisateur> pour pouvoir recuperer l'id de lutilisateur connecté lors dune reservtaion
+    private final MutableLiveData<CompteUtilisateur> utilisateurConnecte = new MutableLiveData<>();
+    public LiveData<CompteUtilisateur> getUtilisateurConnecte() {
+        return utilisateurConnecte;
+    }
+
+
     public CompteUtilisateurViewModel() {
         repository = new CompteRepository();
         // Chargement initial des comptes
@@ -63,24 +70,26 @@ public class CompteUtilisateurViewModel extends ViewModel {
     }
 
     public void authentifierCompte(String courriel, String mdp){
-        repository.authentifierCompte(courriel, mdp, new CompteRepository.AuthentiferCompteCallback() {
+        repository.authentifierCompte(courriel, mdp, new CompteRepository.AuthentifierCompteCallback() {
 
             @Override
-            public void onAuthentificationReussie(boolean success) {
-                if (success){
-                    estAuthentifier.postValue(true);
-                    messageMutable.postValue("Connexion reussie");
-                }
-                else{
-                    estAuthentifier.postValue(false);
-                    messageMutable.postValue("Echec de l'authentification");
-                }
+            public void onAuthentificationReussie(CompteUtilisateur utilisateur) {
+                utilisateurConnecte.postValue(utilisateur); // tocke l'utilisateur connecté
+                estAuthentifier.postValue(true);
+                messageMutable.postValue("Connexion réussie");
+            }
+
+            @Override
+            public void onEchec() {
+                estAuthentifier.postValue(false);
+                messageMutable.postValue("Échec de l'authentification");
             }
 
             @Override
             public void onError(String errorMessage) {
-                messageMutable.postValue("Une erreur est survenue: " +errorMessage);
+                messageMutable.postValue("Une erreur est survenue : " + errorMessage);
             }
         });
     }
+
 }

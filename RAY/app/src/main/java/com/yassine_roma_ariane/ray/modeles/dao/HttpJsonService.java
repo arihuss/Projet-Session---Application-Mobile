@@ -84,16 +84,19 @@ public class HttpJsonService {
         return response.isSuccessful();
     }
 
-    public boolean authentifierCompte(String courriel, String mdp) throws IOException, JSONException{
+
+    // methode pour authentifier le compte qui retourne un Compte afin davoir acces a l'id du compte lors dune reservation
+    public CompteUtilisateur authentifierCompte(String courriel, String mdp) throws IOException, JSONException {
         List<CompteUtilisateur> comptes = getComptes();
 
         for (CompteUtilisateur compte : comptes) {
-            if (compte.getEmail().equals(courriel) && compte.getMdp().equals(mdp)){
-                return true;
+            if (compte.getEmail().equalsIgnoreCase(courriel) && compte.getMdp().equals(mdp)) {
+                return compte;
             }
         }
-        return false;
+        return null;
     }
+
 
     //REQUETES VOYAGES
     public List<Voyage> getVoyages() throws IOException, JSONException{

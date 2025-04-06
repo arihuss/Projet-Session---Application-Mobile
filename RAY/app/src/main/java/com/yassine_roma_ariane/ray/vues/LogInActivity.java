@@ -59,6 +59,18 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                 finish();
             }
         });
+
+        // recuperation de lutilisateur connecte pour avoir son id qui sera stocké dans shared preference
+        // afin de pouvoir realiser les insertions dans la DB lors dune reservation
+        viewModel.getUtilisateurConnecte().observe(this, utilisateur -> {
+            if (utilisateur != null) {
+                getSharedPreferences("session", MODE_PRIVATE)
+                        .edit()
+                        .putInt("clientId", utilisateur.getId())
+                        .apply();
+            }
+        });
+
     }
 
     @Override

@@ -22,10 +22,12 @@ public class CompteRepository {
         void onError(String errorMessage);
     }
 
-    public interface AuthentiferCompteCallback {
-        void onAuthentificationReussie(boolean success);
+    public interface AuthentifierCompteCallback {
+        void onAuthentificationReussie(CompteUtilisateur utilisateur); // retour de l'objet au lieu dun boolean pour avoir acces a lid lors de la reservation
+        void onEchec();
         void onError(String errorMessage);
     }
+
 
     public void fetchComptesFromAPI(FetchComptesCallback callback){
         new Thread(()-> {
@@ -49,15 +51,20 @@ public class CompteRepository {
         }).start();
     }
 
-    public void authentifierCompte(String courriel, String mdp, AuthentiferCompteCallback callback){
-        new Thread(()-> {
-            try{
-                boolean success = CompteUtilisateurDAO.authentifierCompte(courriel,mdp);
-                callback.onAuthentificationReussie(success);
-            }catch (IOException| JSONException e) {
-                Log.e("CompteRepository","Erreur d'authenfication",e);
+    public void authentifierCompte(String courriel, String mdp, AuthentifierCompteCallback callback){
+        new Thread(() -> {
+            try {
+                CompteUtilisateur utilisateur = CompteUtilisateurDAO.authentifierCompte(courriel, mdp);
+                if (utilisateur != null) {
+                    callback.onAuthentificationReussie(utilisateur);
+                } else {
+                    callback.onEchec();
+                }
+            } catch (IOException | JSONException e) {
+                Log.e("CompteRepository", "Erreur d'authentification", e);
                 callback.onError("Erreur: " + e.getMessage());
             }
         }).start();
     }
+
 }

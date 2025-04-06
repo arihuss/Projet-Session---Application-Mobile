@@ -121,9 +121,7 @@ public class DetailsActivity extends AppCompatActivity {
             txtPlacesRestantes.setText(tripSelectionne.getNb_places_disponibles() + " places disponibles");
 
 
-            // TODO: Remplacer par l'ID du client actuellement connecté (à récupérer dynamiquement)
-            int clientId = 1;
-
+            int clientId = getSharedPreferences("session", MODE_PRIVATE).getInt("clientId", -1);
 
 
             Reservation reservation = new Reservation(

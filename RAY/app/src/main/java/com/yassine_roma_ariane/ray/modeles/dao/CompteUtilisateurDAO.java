@@ -11,10 +11,14 @@ public class CompteUtilisateurDAO {
     public static List<CompteUtilisateur> getComptes() throws IOException, JSONException{
         return new HttpJsonService().getComptes();
     }
-    public static boolean authentifierCompte(String courriel, String mdp) throws IOException,JSONException{
-        return new HttpJsonService().authentifierCompte(courriel,mdp);
+
+    public static CompteUtilisateur authentifierCompte(String courriel, String mdp) throws IOException, JSONException {
+        return new HttpJsonService().authentifierCompte(courriel, mdp);
     }
+
     public static boolean creerCompte(CompteUtilisateur compte) throws IOException,JSONException{
         return new HttpJsonService().creerCompte(compte);
     }
+
+
 }
