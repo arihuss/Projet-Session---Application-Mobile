@@ -20,6 +20,7 @@
             android:id="@+id/lvWidget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
             android:background="@color/header"
             android:gravity="center_vertical"
             android:orientation="vertical"
@@ -29,11 +30,11 @@
                 android:id="@+id/textView10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Accueil"
                 android:layout_marginTop="55dp"
                 android:layout_marginBottom="20dp"
+                android:text="Accueil"
                 android:textColor="@color/blanc"
-                android:textSize="24sp"/>
+                android:textSize="24sp" />
 
             <AutoCompleteTextView
                 android:id="@+id/autoTxtDestination"
@@ -96,14 +97,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="5dp"
-                android:progressDrawable="@drawable/seek_bar_accueil"
-                android:thumb="@drawable/seekbar_thumb"
-                android:thumbOffset="0dp"
-                android:splitTrack="false"
+                android:max="2500"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
-                android:max="2500"
-                android:progress="2000"/>
+                android:progress="2000"
+                android:progressDrawable="@drawable/seek_bar_accueil"
+                android:splitTrack="false"
+                android:thumb="@drawable/seekbar_thumb"
+                android:thumbOffset="0dp" />
 
             <LinearLayout
                 android:id="@+id/lvPrix"
@@ -127,9 +128,9 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter"
                     android:text="@string/_02"
-                    android:textSize="16sp"
                     android:textAlignment="center"
-                    android:textColor="@color/blanc" />
+                    android:textColor="@color/blanc"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/txtFin"
@@ -149,11 +150,11 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/btn_rechercher"
                 android:fontFamily="@font/inter"
-                app:backgroundTint="@color/blanc"
-                android:textColor="@color/noir"
-                android:textStyle="bold"
                 android:text="@string/rechercher"
-                android:textSize="16sp"/>
+                android:textColor="@color/noir"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/blanc" />
 
 
             <!--Filters-->
