@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface InterfaceReservationDAO {
     void ajouterReservation(Reservation reservation);
-    List<Reservation> getReservationsPourClient(int clientId);
+    List<Reservation> getReservationsPourClient(String clientId);
     void annulerReservation(int id);
 }

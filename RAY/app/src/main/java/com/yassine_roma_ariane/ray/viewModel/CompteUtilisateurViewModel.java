@@ -55,7 +55,7 @@ public class CompteUtilisateurViewModel extends ViewModel {
             @Override
             public void onCompteCreer(boolean success) {
                 if (success){
-                    messageMutable.postValue("Compte creer avec success");
+                    messageMutable.postValue("Compte créé avec succès");
                 }
                 else{
                     messageMutable.postValue("Echec de creation du compte");

@@ -1,41 +1,33 @@
 package com.yassine_roma_ariane.ray.vues;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.yassine_roma_ariane.ray.R;
 import com.yassine_roma_ariane.ray.modeles.CompteUtilisateur;
-import com.yassine_roma_ariane.ray.modeles.dao.CompteUtilisateurDAO;
 import com.yassine_roma_ariane.ray.viewModel.CompteUtilisateurViewModel;
 
-public class SignInActivity extends AppCompatActivity implements View.OnClickListener{
+public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
+
     private EditText edtPrenom, edtNom, edtTelephone, edtAdresse, edtCourriel, edtMdp, edtMdpConfirme, edtAge;
     private Button btnInscrire;
     private TextView txtRetour;
+    private CompteUtilisateurViewModel viewModel;
+
+    private String courrielTemp, mdpTemp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_sign_in);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
-        // Liaison avec la vue
+        // Vue
         edtPrenom = findViewById(R.id.edtPrenom);
         edtNom = findViewById(R.id.edtNom);
         edtCourriel = findViewById(R.id.edtCourriel);
@@ -44,19 +36,46 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         edtAge = findViewById(R.id.edtAge);
         edtMdp = findViewById(R.id.edtMdp);
         edtMdpConfirme = findViewById(R.id.edtMdpConfirme);
-
         btnInscrire = findViewById(R.id.btnInscrire);
         txtRetour = findViewById(R.id.txtRetour);
 
-        // Mettre les écouteurs
         btnInscrire.setOnClickListener(this);
         txtRetour.setOnClickListener(this);
+
+        // ViewModel
+        viewModel = new ViewModelProvider(this).get(CompteUtilisateurViewModel.class);
+
+        // Observer les messages du ViewModel
+        viewModel.getMessage().observe(this, message -> {
+            Toast.makeText(SignInActivity.this, message, Toast.LENGTH_SHORT).show();
+            if ("Compte créé avec succès".equals(message)) {
+                if (courrielTemp != null && mdpTemp != null) {
+                    viewModel.authentifierCompte(courrielTemp, mdpTemp);
+                }
+            }
+        });
+
+        // Observer utilisateur connecté pour rediriger
+        viewModel.getUtilisateurConnecte().observe(this, utilisateur -> {
+            if (utilisateur != null) {
+                // Sauvegarde ID utilisateur connecté
+                getSharedPreferences("session", MODE_PRIVATE)
+                        .edit()
+                        .putString("clientId", utilisateur.getId())
+                        .apply();
+
+                // Aller à l'accueil
+                Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     @Override
     public void onClick(View v) {
-        if(v == btnInscrire) {
-            // Transformer les entrées en strings
+        if (v == btnInscrire) {
             String prenom = edtPrenom.getText().toString().trim();
             String nom = edtNom.getText().toString().trim();
             String courriel = edtCourriel.getText().toString().trim();
@@ -66,88 +85,71 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             String mdp = edtMdp.getText().toString().trim();
             String mdpConfirme = edtMdpConfirme.getText().toString().trim();
 
-            // Nous dit si tous les champs sont biens validés
             boolean isValid = true;
+            int age = -1;
 
-            // valider le prenom
-            if(prenom.isEmpty()) {
-                edtPrenom.setError("Prenom obligatoire");
+            if (prenom.isEmpty()) {
+                edtPrenom.setError("Prénom obligatoire");
                 isValid = false;
             }
 
-            // valider le nom
-            if(nom.isEmpty()) {
+            if (nom.isEmpty()) {
                 edtNom.setError("Nom obligatoire");
                 isValid = false;
             }
 
-            // valider le courriel
-            if(courriel.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(courriel).matches()) {
-                edtPrenom.setError("Entrer un courriel valide");
+            if (courriel.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(courriel).matches()) {
+                edtCourriel.setError("Courriel invalide");
                 isValid = false;
             }
 
-            // valider l'age
-            int age = -1;
-            if(strAge.isEmpty()) {
-                edtAge.setError("Age obligatoire");
+            if (strAge.isEmpty()) {
+                edtAge.setError("Âge obligatoire");
                 isValid = false;
+            } else {
+                try {
+                    age = Integer.parseInt(strAge);
+                } catch (NumberFormatException e) {
+                    edtAge.setError("Âge invalide");
+                    isValid = false;
+                }
             }
-            try {
-                age = Integer.parseInt(strAge);
-            }
-            catch(NumberFormatException e) {
-                edtAge.setError("Entrer un age valide");
+
+            if (tel.isEmpty() || !Patterns.PHONE.matcher(tel).matches()) {
+                edtTelephone.setError("Téléphone invalide");
                 isValid = false;
             }
 
-            // valider le telephone
-            if(tel.isEmpty() || !Patterns.PHONE.matcher(tel).matches()) {
-                edtTelephone.setError("Entrer un numéro de téléphone valide");
-                isValid = false;
-            }
-
-            // valider l'adresse
-            if(adresse.isEmpty()) {
+            if (adresse.isEmpty()) {
                 edtAdresse.setError("Adresse obligatoire");
                 isValid = false;
             }
 
-            // valider le mot de passe
-            if(mdp.isEmpty()) {
+            if (mdp.isEmpty()) {
                 edtMdp.setError("Mot de passe obligatoire");
                 isValid = false;
-            }
-            else if(mdp.length() < 8) {
-                edtMdp.setError("Veuillez respecter la longeur minimale de 8 caractères");
+            } else if (mdp.length() < 8) {
+                edtMdp.setError("Minimum 8 caractères");
                 isValid = false;
             }
 
-            // valider la confirmation du mot de passe
-            if(mdpConfirme.isEmpty()) {
-                edtMdp.setError("Veuillez confirmer votre mot de passe");
+            if (mdpConfirme.isEmpty()) {
+                edtMdpConfirme.setError("Confirmation requise");
                 isValid = false;
-            }
-            // valider que les 2 mots de passes sont pareils
-            else if(!mdp.equals(mdpConfirme)) {
+            } else if (!mdp.equals(mdpConfirme)) {
                 edtMdpConfirme.setError("Les mots de passe ne correspondent pas");
                 isValid = false;
             }
 
-
-            // si toutes les entrées sont validées
-            if(isValid) {
-                // Création d'un instance compte
-                CompteUtilisateur nouvCompte = new CompteUtilisateur(prenom, nom, courriel, mdp, tel, adresse, age);
-
-                // Création du compte
-                CompteUtilisateurViewModel viewModel = new CompteUtilisateurViewModel();
-                viewModel.creerCompte(nouvCompte);
-                viewModel.refreshComptes();  // besoin de le mettre?
-                finish();
+            if (isValid) {
+                courrielTemp = courriel;
+                mdpTemp = mdp;
+                CompteUtilisateur compte = new CompteUtilisateur(prenom, nom, courriel, mdp, tel, adresse, age);
+                viewModel.creerCompte(compte);
             }
         }
-        if(v == txtRetour) {
+
+        if (v == txtRetour) {
             finish();
         }
     }

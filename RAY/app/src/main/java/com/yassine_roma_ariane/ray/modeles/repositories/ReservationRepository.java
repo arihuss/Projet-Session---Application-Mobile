@@ -24,7 +24,7 @@ public class ReservationRepository {
         dao.ajouterReservation(reservation);
     }
 
-    public List<Reservation> getReservationsPourClient(int clientId) {
+    public List<Reservation> getReservationsPourClient(String clientId) {
         return dao.getReservationsPourClient(clientId);
     }
 

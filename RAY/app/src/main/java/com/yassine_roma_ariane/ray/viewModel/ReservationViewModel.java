@@ -26,7 +26,7 @@ public class ReservationViewModel extends AndroidViewModel {
         return reservations;
     }
 
-    public void loadReservationsPourClient(int clientId) {
+    public void loadReservationsPourClient(String clientId) {
         List<Reservation> liste = repository.getReservationsPourClient(clientId);
         reservations.setValue(liste);
     }
@@ -37,7 +37,7 @@ public class ReservationViewModel extends AndroidViewModel {
         loadReservationsPourClient(reservation.getClientId());
     }
 
-    public void annulerReservation(int idReservation, int clientId) {
+    public void annulerReservation(int idReservation, String clientId) {
         repository.annulerReservation(idReservation);
         loadReservationsPourClient(clientId);
     }

@@ -1,8 +1,8 @@
 package com.yassine_roma_ariane.ray.modeles;
 
 public class CompteUtilisateur {
-    private int age, id;
-    private static int id_increment = 1;
+    private int age;
+    private String id; //changé de int à String
     private String nom, prenom, email, mdp, telephone, adresse;
 
     public CompteUtilisateur(String prenom, String nom, String email, String mdp, String telephone, String adresse, int age) {
@@ -13,18 +13,16 @@ public class CompteUtilisateur {
         this.telephone = telephone;
         this.adresse = adresse;
         this.age = age;
-        this.id = id_increment; // assigne le current id
-        id_increment++;     // increment le compteur d'id
     }
 
     public CompteUtilisateur() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) { // ✅ changé en String
         this.id = id;
     }
 

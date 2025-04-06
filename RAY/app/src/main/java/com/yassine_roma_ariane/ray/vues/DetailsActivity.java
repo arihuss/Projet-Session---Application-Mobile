@@ -121,8 +121,7 @@ public class DetailsActivity extends AppCompatActivity {
             txtPlacesRestantes.setText(tripSelectionne.getNb_places_disponibles() + " places disponibles");
 
 
-            int clientId = getSharedPreferences("session", MODE_PRIVATE).getInt("clientId", -1);
-
+            String clientId = getSharedPreferences("session", MODE_PRIVATE).getString("clientId", null);
 
             Reservation reservation = new Reservation(
                     0,
@@ -132,6 +131,7 @@ public class DetailsActivity extends AppCompatActivity {
                     nbPlacesDemandees,
                     "confirmée"
             );
+
 
             reservationViewModel.ajouterReservation(reservation);
         });

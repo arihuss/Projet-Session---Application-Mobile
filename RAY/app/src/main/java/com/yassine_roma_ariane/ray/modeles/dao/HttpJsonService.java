@@ -75,7 +75,7 @@ public class HttpJsonService {
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
         RequestBody requestBody = RequestBody.create(String.valueOf(obj), JSON);
         Request request = new Request.Builder()
-                .url(URL_POINT_ENTREE)
+                .url(URL_POINT_ENTREE + "/clients")
                 .post(requestBody)
                 .build();
 

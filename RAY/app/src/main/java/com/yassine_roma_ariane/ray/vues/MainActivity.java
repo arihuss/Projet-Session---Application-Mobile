@@ -1,8 +1,7 @@
 package com.yassine_roma_ariane.ray.vues;
 
-import static androidx.navigation.Navigation.findNavController;
-
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -11,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 import com.yassine_roma_ariane.ray.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,10 +18,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Vérifier si l'utilisateur n'est pas authentifié et que c'est le premier lancement
-        boolean isAuthenticated = getIntent().getBooleanExtra("authenticated", false);
+        // Lire l'ID du client depuis les SharedPreferences
+        SharedPreferences prefs = getSharedPreferences("session", MODE_PRIVATE);
+        String clientId = prefs.getString("clientId", null);
 
-        if (!isAuthenticated && savedInstanceState == null) {
+        // Si aucun client connecté et c'est le premier lancement
+        if (clientId == null && savedInstanceState == null) {
             Intent intent = new Intent(this, LogInActivity.class);
             startActivity(intent);
             finish();
@@ -47,15 +47,20 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment selectedFragment = null;
 
-                // Vérification des éléments sélectionnés
                 if (item.getItemId() == R.id.accueilFragment) {
                     selectedFragment = new AccueilFragment();
                 } else if (item.getItemId() == R.id.historiqueFragment) {
                     selectedFragment = new HistoriqueFragment();
                 } else if (item.getItemId() == R.id.deconnexion) {
+                    // Efface la session
+                    getSharedPreferences("session", MODE_PRIVATE)
+                            .edit()
+                            .remove("clientId")
+                            .apply();
+
                     Intent intent = new Intent(MainActivity.this, LogInActivity.class);
                     startActivity(intent);
-                    finish(); // Ferme MainActivity après déconnexion
+                    finish(); // Fermer MainActivity après déconnexion
                     return true;
                 }
 

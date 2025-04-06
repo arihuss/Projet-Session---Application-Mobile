@@ -66,7 +66,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
             if (utilisateur != null) {
                 getSharedPreferences("session", MODE_PRIVATE)
                         .edit()
-                        .putInt("clientId", utilisateur.getId())
+                        .putString("clientId", utilisateur.getId())
                         .apply();
             }
         });
@@ -85,9 +85,10 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                Toast.makeText(LogInActivity.this,"Veuillez remplir les champs",Toast.LENGTH_SHORT).show();
            }
         }
-        if (v==txtCreerCompte || v==txtPasDeCompte){
+        if (v == txtCreerCompte || v == txtPasDeCompte) {
             Intent intent = new Intent(LogInActivity.this, SignInActivity.class);
             startActivity(intent);
         }
+
     }
 }

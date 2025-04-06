@@ -31,14 +31,14 @@ public class ReservationDAO implements InterfaceReservationDAO {
     }
 
     @Override
-    public List<Reservation> getReservationsPourClient(int clientId) {
+    public List<Reservation> getReservationsPourClient(String clientId) {
         List<Reservation> liste = new ArrayList<>();
 
         Cursor cursor = db.query(
                 ReservationHelper.TABLE_NAME,
                 null,
                 ReservationHelper.COL_CLIENT_ID + " = ?",
-                new String[]{String.valueOf(clientId)},
+                new String[]{clientId},
                 null,
                 null,
                 ReservationHelper.COL_DATE + " ASC"
@@ -49,7 +49,7 @@ public class ReservationDAO implements InterfaceReservationDAO {
                 Reservation reservation = new Reservation();
                 reservation.setId(cursor.getInt(cursor.getColumnIndexOrThrow(ReservationHelper.COL_ID)));
                 reservation.setVoyageId(cursor.getInt(cursor.getColumnIndexOrThrow(ReservationHelper.COL_VOYAGE_ID)));
-                reservation.setClientId(cursor.getInt(cursor.getColumnIndexOrThrow(ReservationHelper.COL_CLIENT_ID)));
+                reservation.setClientId(cursor.getString(cursor.getColumnIndexOrThrow(ReservationHelper.COL_CLIENT_ID)));
                 reservation.setDate(cursor.getString(cursor.getColumnIndexOrThrow(ReservationHelper.COL_DATE)));
                 reservation.setNbPersonnes(cursor.getInt(cursor.getColumnIndexOrThrow(ReservationHelper.COL_NB_PERSONNES)));
                 reservation.setStatut(cursor.getString(cursor.getColumnIndexOrThrow(ReservationHelper.COL_STATUT)));

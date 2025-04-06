@@ -3,14 +3,14 @@ package com.yassine_roma_ariane.ray.modeles;
 public class Reservation {
     private int id;
     private int voyageId;
-    private int clientId;
+    private String clientId;
     private String date;
     private int nbPersonnes;
     private String statut; // "confirmée", "annulée"
 
     public Reservation() {}
 
-    public Reservation(int id, int voyageId, int clientId, String date, int nbPersonnes, String statut) {
+    public Reservation(int id, int voyageId, String clientId, String date, int nbPersonnes, String statut) {
         this.id = id;
         this.voyageId = voyageId;
         this.clientId = clientId;
@@ -36,11 +36,11 @@ public class Reservation {
         this.voyageId = voyageId;
     }
 
-    public int getClientId() {
+    public String getClientId() {
         return clientId;
     }
 
-    public void setClientId(int clientId) {
+    public void setClientId(String clientId) {
         this.clientId = clientId;
     }
 
