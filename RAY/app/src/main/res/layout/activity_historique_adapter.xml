@@ -81,7 +81,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/accentSelectionnee"
                 android:fontFamily="@font/inter"
                 android:text="Confirmée"
                 android:textSize="13dp"
