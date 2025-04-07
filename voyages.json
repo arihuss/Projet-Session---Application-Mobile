@@ -251,6 +251,16 @@
       "adresse": "123 rue St-Catherine",
       "telephone": "450-626-1912",
       "mdp": "roma1234"
+    },
+    {
+      "id": "9dc2",
+      "prenom": "George",
+      "nom": "Doe",
+      "age": 32,
+      "email": "george@example.com",
+      "adresse": "123 rue Principale N",
+      "telephone": "514-674-0923",
+      "mdp": "george1234"
     }
   ]
 }

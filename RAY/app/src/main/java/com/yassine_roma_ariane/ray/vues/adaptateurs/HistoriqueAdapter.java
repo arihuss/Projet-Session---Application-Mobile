@@ -2,6 +2,7 @@ package com.yassine_roma_ariane.ray.vues.adaptateurs;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,12 +21,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
 import com.yassine_roma_ariane.ray.R;
 import com.yassine_roma_ariane.ray.modeles.Reservation;
+import com.yassine_roma_ariane.ray.vues.ConfirmationActivity;
 
 import java.util.List;
 
-public class HistoriqueAdapter extends ArrayAdapter implements View.OnClickListener {
+public class HistoriqueAdapter extends ArrayAdapter {
     private Context contexte;
     private int viewRessourceId;
     private Resources resources;
@@ -70,19 +73,29 @@ public class HistoriqueAdapter extends ArrayAdapter implements View.OnClickListe
             tvDateReserv.setText(reservation.getDate());
             tvPrixReserv.setText("Prix de la réservation" + " $");
             btnStatut.setText(reservation.getStatut());
-            // imgReservation.setImageResource();
+
+            // Temporairement
+            imgReservation.setImageResource(R.drawable.ray_logo);
+
+            // TODO: Affichage de l'image de la destination (par le voyageId, il faut get le imgUrl)
+//            Glide.with(contexte)
+//                    .load(reservation.getImageUrl())  a modifier
+//                    .placeholder(R.drawable.ray_logo)
+//                    .into(imgReservation);
+
 
             // écouteur pour l'annulation
             tvAnnuler = view.findViewById(R.id.tvAnnuler);
-            tvAnnuler.setOnClickListener(this);
+            tvAnnuler.setOnClickListener(v -> {
+                Intent intent =  new Intent(getContext(), ConfirmationActivity.class);
+                intent.putExtra("reservation", reservation);
+                getContext().startActivity(intent);
+            });
         }
+
+        return view;
 
     }
 
-    @Override
-    public void onClick(View v) {
-        if(v == tvAnnuler) {
 
-        }
-    }
 }

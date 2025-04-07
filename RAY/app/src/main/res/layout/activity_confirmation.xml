@@ -7,4 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".vues.ConfirmationActivity">
 
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirmation Activity"
+        tools:layout_editor_absoluteX="164dp"
+        tools:layout_editor_absoluteY="267dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

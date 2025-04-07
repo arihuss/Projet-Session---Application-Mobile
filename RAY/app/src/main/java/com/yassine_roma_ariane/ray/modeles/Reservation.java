@@ -1,6 +1,9 @@
 package com.yassine_roma_ariane.ray.modeles;
 
-public class Reservation {
+import java.io.Serial;
+import java.io.Serializable;
+
+public class Reservation implements Serializable {
     private int id;
     private int voyageId;
     private String clientId;

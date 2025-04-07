@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -19,7 +20,7 @@ import com.yassine_roma_ariane.ray.R;
  * Use the {@link HistoriqueFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HistoriqueFragment extends Fragment implements View.OnClickListener {
+public class HistoriqueFragment extends Fragment implements AdapterView.OnItemClickListener {
     // Déclaration des variables
     private ListView lvReservations;
 
@@ -77,8 +78,10 @@ public class HistoriqueFragment extends Fragment implements View.OnClickListener
         // Liaison avec
     }
 
+
+    // TODO: Gestion du click sur un item de la liste, pour amener à la page de l'événement ??
     @Override
-    public void onClick(View v) {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
     }
 }
