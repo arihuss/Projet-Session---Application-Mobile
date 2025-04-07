@@ -1,6 +1,6 @@
 package com.yassine_roma_ariane.ray.vues;
 
-import android.content.SharedPreferences;
+
 import android.os.Bundle;
 import android.content.SharedPreferences;
 import androidx.fragment.app.Fragment;
@@ -114,6 +114,8 @@ public class HistoriqueFragment extends Fragment implements AdapterView.OnItemCl
 
         String clientId = getSharedPreferences("session", MODE_PRIVATE).getString("clientId", null);
         viewModel.loadReservationsPourClient(clientId);
+
+        return view;
 
 
     }
