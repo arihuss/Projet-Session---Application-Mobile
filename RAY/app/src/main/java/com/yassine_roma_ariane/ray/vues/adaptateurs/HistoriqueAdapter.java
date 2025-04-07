@@ -35,11 +35,18 @@ public class HistoriqueAdapter extends ArrayAdapter {
     private List<Reservation> reservations;
     private TextView tvAnnuler;
 
-    public HistoriqueAdapter(@NonNull Context context, int resource, @NonNull List <Reservation> objects) {
-        super(context, resource, objects);
+    public HistoriqueAdapter(@NonNull Context context, int resource) {
+        super(context, resource);
         contexte = context;
         viewRessourceId = resource;
-        reservations = objects;
+        resources = contexte.getResources();
+
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+       this.reservations.clear();
+        this.reservations.addAll(reservations);
+        notifyDataSetChanged();
     }
 
     @Override

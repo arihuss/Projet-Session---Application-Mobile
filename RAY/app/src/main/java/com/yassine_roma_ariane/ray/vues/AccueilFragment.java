@@ -139,7 +139,7 @@ public class AccueilFragment extends Fragment implements View.OnClickListener {
                     Toast.makeText(getActivity(), voyages.size() + " voyages chargés", Toast.LENGTH_SHORT).show();
                 }else {
                     //Si la liste est nulle, un Toast indique une erreur de chargement.
-                    Toast.makeText(getActivity(), "Erreur de chargement des comptes", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Erreur de chargement des voyages", Toast.LENGTH_SHORT).show();
                 }
             }
         });
