@@ -137,6 +137,22 @@ public class VoyageViewModel extends ViewModel {
         });
     }
 
+    public void rendrePlacesDisponibles(int voyageId, String date, int nbPlaces) {
+        repository.rendrePlacesDisponibles(voyageId, date, nbPlaces, new VoyageRepository.UpdatePlacesCallback() {
+            @Override
+            public void onSuccess() {
+                messageMutable.postValue("Places remises à disposition.");
+                refreshVoyages(); // facultatif : recharge les données
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+                messageMutable.postValue("Échec de la mise à jour des places : " + errorMessage);
+            }
+        });
+    }
+
+
     public LiveData<Voyage> getVoyageParId(int id) {
         MutableLiveData<Voyage> voyageLiveData = new MutableLiveData<>();
         List<Voyage> listeVoyages = voyagesMutable.getValue();

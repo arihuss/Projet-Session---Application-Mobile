@@ -154,7 +154,7 @@ public class DetailsActivity extends AppCompatActivity {
         }
 
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, datesList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_selected_item, datesList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDates.setAdapter(adapter);
         spinnerDates.setSelection(0);

@@ -43,4 +43,17 @@
     <string name="annuler"><u>Annuler?</u></string>
     <string name="statut">Statut:</string>
     <string name="date_de_d_part">Date de départ:</string>
+    <string name="qu_bec_qc">Québec, QC</string>
+    <string name="visitez_la_plus">Visitez la plus vieille ville...Visitez la plus vieille ville...</string>
+    <string name="dur_e_2_nuits">Durée : 2 nuits\nPrix : 50$ par personne</string>
+    <string name="activit_s">Activités : ...</string>
+    <string name="dates_offertes">Dates offertes :</string>
+    <string name="_4_places_disponibles">4 places disponibles</string>
+    <string name="r_server_maintenant">Réserver Maintenant</string>
+    <string name="nombre_de_personnes">Nombre de personnes :</string>
+    <string name="r_server">Réserver</string>
+    <string name="nom_du_voyage">Nom du Voyage</string>
+    <string name="annuler_votre_r_servation">Êtes-vous sûr de vouloir annuler votre réservation ?</string>
+    <string name="annuler_oui">Annuler</string>
+    <string name="retour">Retour</string>
 </resources>

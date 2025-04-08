@@ -1,6 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/noir"
     android:padding="16dp">
 
@@ -10,6 +11,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:layout_marginTop="30dp"
             android:id="@+id/imageVoyage"
             android:layout_width="match_parent"
             android:layout_height="200dp"
@@ -21,7 +23,7 @@
             android:id="@+id/txtTitreVoyage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Québec, QC"
+            android:text="@string/qu_bec_qc"
             android:textSize="20sp"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
@@ -32,7 +34,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:layout_marginTop="8dp"
-            android:text="Visitez la plus vieille ville...Visitez la plus vieille ville..." />
+            android:text="@string/visitez_la_plus" />
 
         <TextView
             android:id="@+id/txtDureePrixVoyage"
@@ -40,7 +42,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:layout_marginTop="8dp"
-            android:text="Durée : 2 nuits\nPrix : 50$ par personne" />
+            android:text="@string/dur_e_2_nuits" />
 
         <TextView
             android:id="@+id/txtActivitesVoyage"
@@ -48,7 +50,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:layout_marginTop="8dp"
-            android:text="Activités : ..." />
+            android:text="@string/activit_s" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -70,7 +72,7 @@
                     android:id="@+id/txtDatesOffertes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dates offertes :"
+                    android:text="@string/dates_offertes"
                     android:textColor="@android:color/white"
                     android:textStyle="bold" />
 
@@ -78,10 +80,10 @@
 
                 <Spinner
                     android:id="@+id/spinnerDates"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:textColor="@android:color/white"
                     android:backgroundTint="@color/interieurInput"
                     android:background="@android:drawable/btn_dropdown" />
 
@@ -89,7 +91,7 @@
                     android:id="@+id/txtPlacesRestantes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="4 places disponibles"
+                    android:text="@string/_4_places_disponibles"
                     android:textColor="@android:color/white"
                     android:textSize="12sp"
                     android:layout_marginTop="4dp"/>
@@ -100,9 +102,12 @@
                     android:layout_height="0dp"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
                     android:layout_marginTop="10dp"
-                    android:backgroundTint="@color/accent"
-                    android:text="Réserver Maintenant"
+                    android:background="@drawable/btn_rounded_corner"
+                    app:backgroundTint="@color/accent"
+                    android:text="@string/r_server_maintenant"
                     android:textColor="@android:color/white" />
 
 
@@ -122,7 +127,7 @@
                     android:id="@+id/txtNbPersonnes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nombre de personnes :"
+                    android:text="@string/nombre_de_personnes"
                     android:textColor="@android:color/white"
                     android:textStyle="bold" />
 
@@ -142,9 +147,12 @@
                     android:layout_width="match_parent"
                     android:layout_weight="1"
                     android:layout_height="0dp"
-                    android:text="Réserver"
+                    android:text="@string/r_server"
+                    android:background="@drawable/btn_rounded_corner"
+                    app:backgroundTint="@color/accent"
                     android:layout_marginTop="20dp"
-
+                    android:textSize="20dp"
+                    android:textStyle="bold"
                     android:backgroundTint="@color/accent"
                     android:textColor="@android:color/white" />
 
@@ -155,8 +163,11 @@
             android:id="@+id/btnRetour"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Retour"
-            android:layout_marginTop="16dp"
+            android:text="@string/retour"
+            android:background="@drawable/btn_rounded_corner"
+            app:backgroundTint="@color/header"
+            android:layout_marginTop="160dp"
+            android:textSize="20dp"
             android:layout_marginHorizontal="100dp"
             android:backgroundTint="@color/header"
             android:textColor="@android:color/white"/>

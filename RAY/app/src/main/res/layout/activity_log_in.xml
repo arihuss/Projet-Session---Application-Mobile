@@ -104,7 +104,7 @@
         android:layout_width="218dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:background="@drawable/btn_connexion"
+        android:background="@drawable/btn_rounded_corner"
         android:fontFamily="@font/inter"
         android:text="@string/se_connecter"
         android:textColor="@color/blanc"

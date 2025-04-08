@@ -25,7 +25,14 @@
             android:text="Havana"
             android:textColor="@color/blanc"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="14sp"
+            android:autoSizeMaxTextSize="24sp"
+            android:autoSizeStepGranularity="1sp" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,7 +59,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/textView14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter"

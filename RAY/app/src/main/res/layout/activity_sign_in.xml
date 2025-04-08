@@ -262,7 +262,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="35dp"
-                android:background="@drawable/btn_connexion"
+                android:background="@drawable/btn_rounded_corner"
                 android:fontFamily="@font/inter"
                 android:text="@string/s_inscire"
                 android:textColor="@color/blanc"

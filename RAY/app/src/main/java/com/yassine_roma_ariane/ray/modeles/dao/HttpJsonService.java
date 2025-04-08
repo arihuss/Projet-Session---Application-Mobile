@@ -180,4 +180,21 @@ public class HttpJsonService {
         return voyagesFiltres;
     }
 
+    public boolean updateVoyage(Voyage voyage) throws IOException, JSONException {
+        OkHttpClient client = new OkHttpClient();
+        ObjectMapper mapper = new ObjectMapper();
+
+        String json = mapper.writeValueAsString(voyage);
+        RequestBody requestBody = RequestBody.create(json, MediaType.get("application/json"));
+
+        Request request = new Request.Builder()
+                .url("http://10.0.2.2:3000/voyages/" + voyage.getId())
+                .put(requestBody)
+                .build();
+
+        Response response = client.newCall(request).execute();
+        return response.isSuccessful();
+    }
+
+
 }
