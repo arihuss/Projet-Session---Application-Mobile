@@ -14,8 +14,9 @@ import java.util.List;
 
 public class ReservationViewModel extends AndroidViewModel {
 
-    private ReservationRepository repository;
-    private MutableLiveData<List<Reservation>> reservations = new MutableLiveData<>();
+    private final ReservationRepository repository;
+    private final MutableLiveData<List<Reservation>> reservations = new MutableLiveData<>();
+    private final MutableLiveData<String> message = new MutableLiveData<>();
 
     public ReservationViewModel(@NonNull Application application) {
         super(application);
@@ -26,19 +27,30 @@ public class ReservationViewModel extends AndroidViewModel {
         return reservations;
     }
 
+    public LiveData<String> getMessage() {
+        return message;
+    }
+
     public void loadReservationsPourClient(String clientId) {
-        List<Reservation> liste = repository.getReservationsPourClient(clientId);
-        reservations.setValue(liste);
+        new Thread(() -> {
+            List<Reservation> liste = repository.getReservationsPourClient(clientId);
+            reservations.postValue(liste);
+        }).start();
     }
 
     public void ajouterReservation(Reservation reservation) {
-        repository.ajouterReservation(reservation);
-        // recharge la liste après ajout si nécessaire
-        loadReservationsPourClient(reservation.getClientId());
+        new Thread(() -> {
+            repository.ajouterReservation(reservation);
+            message.postValue("Réservation enregistrée avec succès.");
+            loadReservationsPourClient(reservation.getClientId());
+        }).start();
     }
 
     public void annulerReservation(int idReservation, String clientId) {
-        repository.annulerReservation(idReservation);
-        loadReservationsPourClient(clientId);
+        new Thread(() -> {
+            repository.annulerReservation(idReservation);
+            message.postValue("Réservation annulée.");
+            loadReservationsPourClient(clientId);
+        }).start();
     }
 }
