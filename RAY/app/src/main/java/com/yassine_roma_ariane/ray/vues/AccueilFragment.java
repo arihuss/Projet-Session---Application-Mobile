@@ -135,7 +135,12 @@ public class AccueilFragment extends Fragment implements View.OnClickListener {
             public void onChanged(List<Voyage> voyages) {
                 if (voyages != null){
                     adaptateur.setVoyages(voyages);
-                    setListViewHeightBasedOnChildren(lvVoyages);
+                    lvVoyages.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            setListViewHeightBasedOnChildren(lvVoyages);
+                        }
+                    });
                     Toast.makeText(getActivity(), voyages.size() + " voyages chargés", Toast.LENGTH_SHORT).show();
                 }else {
                     //Si la liste est nulle, un Toast indique une erreur de chargement.
@@ -233,7 +238,7 @@ public class AccueilFragment extends Fragment implements View.OnClickListener {
         for (int i = 0; i < listAdapter.getCount(); i++) {
             View listItem = listAdapter.getView(i, null, listView);
             listItem.measure(0, 0);
-            totalHeight += listItem.getMeasuredHeight() + listView.getDividerHeight();
+            totalHeight += listItem.getMeasuredHeight() -350;
         }
 
         ViewGroup.LayoutParams params = listView.getLayoutParams();
@@ -241,9 +246,6 @@ public class AccueilFragment extends Fragment implements View.OnClickListener {
         listView.setLayoutParams(params);
         listView.requestLayout();
     }
-
-
-
 
     @Override
     public void onClick(View v) {
