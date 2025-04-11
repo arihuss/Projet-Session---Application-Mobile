@@ -31,6 +31,13 @@ public class HttpJsonService {
     private static String URL_POINT_ENTREE = "http://10.0.2.2:3000";
 
     //REQUETES COMPTES
+
+    /**
+     * Recupere tous les comptes du Json
+     * @return une liste des comptes
+     * @throws IOException
+     * @throws JSONException
+     */
     public List<CompteUtilisateur> getComptes() throws IOException, JSONException{
         //get les comptes utilisateurs du JSON
         OkHttpClient okHttpClient = new OkHttpClient();
@@ -57,12 +64,18 @@ public class HttpJsonService {
         return null;
     }
 
+    /**
+     * Creer un compte et le rajoute dans le Json lors de l'inscription
+     * @param utilisateur
+     * @return true si l'inscription a été faite avec succes, et false si une erreur s'est passée
+     * @throws IOException
+     * @throws JSONException
+     */
     public boolean creerCompte(CompteUtilisateur utilisateur) throws IOException,JSONException {
         //creer un compte et le mettre dans le JSON
         OkHttpClient client = new OkHttpClient();
         JSONObject obj = new JSONObject();
 
-        // est-ce qu'il faut valider que les informations sont pas null/empty??
 
         obj.put("prenom", utilisateur.getPrenom());
         obj.put("nom", utilisateur.getNom());
@@ -84,8 +97,14 @@ public class HttpJsonService {
         return response.isSuccessful();
     }
 
-
-    // methode pour authentifier le compte qui retourne un Compte afin davoir acces a l'id du compte lors dune reservation
+    /**
+     * Authentifier le compte qui retourne un Compte afin d'avoir acces a l'id du compte lors dune reservation
+     * @param courriel courriel de l'utilisateur
+     * @param mdp mdp de l'utilisateur
+     * @return
+     * @throws IOException
+     * @throws JSONException
+     */
     public CompteUtilisateur authentifierCompte(String courriel, String mdp) throws IOException, JSONException {
         List<CompteUtilisateur> comptes = getComptes();
 
@@ -99,6 +118,13 @@ public class HttpJsonService {
 
 
     //REQUETES VOYAGES
+
+    /**
+     * Récupère les voyages du Json
+     * @return une liste des voyages
+     * @throws IOException
+     * @throws JSONException
+     */
     public List<Voyage> getVoyages() throws IOException, JSONException{
         //get tous les voyages pour la prochaine fonction
         OkHttpClient okHttpClient = new OkHttpClient();
@@ -126,6 +152,16 @@ public class HttpJsonService {
         return null;
     }
 
+    /**
+     * Récupère les voyages filtrés selon les filtres rentrées
+     * @param destination filtre de destination
+     * @param type filtre de type
+     * @param date filtre de date
+     * @param budget filtre de budget
+     * @return Une liste des voyages filtrés
+     * @throws IOException
+     * @throws JSONException
+     */
     public List<Voyage> getVoyagesByFilter(String destination, String type, String date, double budget) throws IOException, JSONException {
         List<Voyage> tousLesVoyages = getVoyages(); // récupère tous les voyages
         List<Voyage> voyagesFiltres = new ArrayList<>();
@@ -180,6 +216,13 @@ public class HttpJsonService {
         return voyagesFiltres;
     }
 
+    /**
+     * Changer le nombre de places disponibles d'un voyage
+     * @param voyage Le voyage à changer
+     * @return true si le changement a été fait avec success, false sinon
+     * @throws IOException
+     * @throws JSONException
+     */
     public boolean updateVoyage(Voyage voyage) throws IOException, JSONException {
         OkHttpClient client = new OkHttpClient();
         ObjectMapper mapper = new ObjectMapper();
@@ -195,6 +238,4 @@ public class HttpJsonService {
         Response response = client.newCall(request).execute();
         return response.isSuccessful();
     }
-
-
 }

@@ -14,10 +14,15 @@ public class ReservationDAO implements InterfaceReservationDAO {
 
     private SQLiteDatabase db;
 
+    //Constructeur
     public ReservationDAO(SQLiteDatabase db) {
         this.db = db;
     }
 
+    /**
+     * Ajouter une reservation à un client donné
+     * @param reservation La reservation à rajouter
+     */
     @Override
     public void ajouterReservation(Reservation reservation) {
         ContentValues values = new ContentValues();
@@ -30,6 +35,11 @@ public class ReservationDAO implements InterfaceReservationDAO {
         db.insert(ReservationHelper.TABLE_NAME, null, values);
     }
 
+    /**
+     * Récupérer les réservations selon un client
+     * @param clientId Le id du client
+     * @return
+     */
     @Override
     public List<Reservation> getReservationsPourClient(String clientId) {
         List<Reservation> liste = new ArrayList<>();
@@ -62,6 +72,10 @@ public class ReservationDAO implements InterfaceReservationDAO {
         return liste;
     }
 
+    /**
+     * Annuler une réservation pour un client donnée
+     * @param id le id du client
+     */
     @Override
     public void annulerReservation(int id) {
         ContentValues values = new ContentValues();

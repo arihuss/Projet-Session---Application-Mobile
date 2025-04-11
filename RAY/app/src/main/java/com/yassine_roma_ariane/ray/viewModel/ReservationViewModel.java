@@ -1,5 +1,9 @@
 package com.yassine_roma_ariane.ray.viewModel;
 
+/**
+ * Appelle les fonctions du Respository sur les reservations
+ */
+
 import android.app.Application;
 
 import androidx.annotation.NonNull;

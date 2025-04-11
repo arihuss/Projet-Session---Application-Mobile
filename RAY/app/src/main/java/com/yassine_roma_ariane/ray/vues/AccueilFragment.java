@@ -54,17 +54,15 @@ public class AccueilFragment extends Fragment implements View.OnClickListener {
     private ActivityResultLauncher<Intent> goToDetails;
 
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
+
     private String mParam1;
     private String mParam2;
 
     public AccueilFragment() {
-        // Required empty public constructor
+
     }
 
     /**
@@ -75,7 +73,7 @@ public class AccueilFragment extends Fragment implements View.OnClickListener {
      * @param param2 Parameter 2.
      * @return A new instance of fragment AccueilFragment.
      */
-    // TODO: Rename and change types and number of parameters
+
     public static AccueilFragment newInstance(String param1, String param2) {
         AccueilFragment fragment = new AccueilFragment();
         Bundle args = new Bundle();
@@ -97,7 +95,6 @@ public class AccueilFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_accueil, container, false);
     }
 
@@ -105,18 +102,16 @@ public class AccueilFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
-        autoTxtDestination = view.findViewById(R.id.autoTxtDestination); // Replace with your actual ID
-        spType = view.findViewById(R.id.spType); // Replace with your actual ID
-        spDate = view.findViewById(R.id.spDate); // Replace with your actual ID
-        sbBudget = view.findViewById(R.id.sbBudget); // Replace with your actual ID
-        txtPrix = view.findViewById(R.id.txtPrix); // Replace with your actual ID
-        btnRechercher = view.findViewById(R.id.btnRechercher); // Replace with your actual ID
-        lvVoyages = view.findViewById(R.id.lvVoyages); // Replace with your actual ID
+        autoTxtDestination = view.findViewById(R.id.autoTxtDestination);
+        spType = view.findViewById(R.id.spType);
+        spDate = view.findViewById(R.id.spDate);
+        sbBudget = view.findViewById(R.id.sbBudget);
+        txtPrix = view.findViewById(R.id.txtPrix);
+        btnRechercher = view.findViewById(R.id.btnRechercher);
+        lvVoyages = view.findViewById(R.id.lvVoyages);
         lvVoyages.setNestedScrollingEnabled(false);
         btnRechercher.setOnClickListener(this);
         txtPrix.setText(sbBudget.getProgress()+"$");
-
-
 
         goToDetails =
                 registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -189,28 +184,17 @@ public class AccueilFragment extends Fragment implements View.OnClickListener {
         sbBudget.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                // This method is called whenever the progress level is changed
-                // Update the TextView with the current progress value
                 txtPrix.setText(String.valueOf(progress)+"$");
-
-                // If you want to format the value (e.g., as currency):
-                // valueTextView.setText("$" + progress);
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                // Called when the user starts interacting with the SeekBar
-                // Optional implementation
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                // Called when the user stops interacting with the SeekBar
-                // Optional implementation
             }
         });
-
-
 
         lvVoyages.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -226,10 +210,12 @@ public class AccueilFragment extends Fragment implements View.OnClickListener {
         viewModel.findDestinations();
         viewModel.findTypesVoyages();
         viewModel.findDatesVoyages();
-
-
     }
 
+    /**
+     * Determine l`hauteur de la page selon le nombre de voyages
+     * @param listView
+     */
     public void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null) return;

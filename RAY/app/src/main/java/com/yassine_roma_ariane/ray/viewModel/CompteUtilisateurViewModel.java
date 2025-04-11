@@ -1,5 +1,9 @@
 package com.yassine_roma_ariane.ray.viewModel;
 
+/**
+ * Appelle les fonctions du Repository sur les comptes
+ */
+
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;

@@ -1,5 +1,9 @@
 package com.yassine_roma_ariane.ray.viewModel;
 
+/**
+ * Appelle les fonctions du repository sur les voyages
+ */
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;

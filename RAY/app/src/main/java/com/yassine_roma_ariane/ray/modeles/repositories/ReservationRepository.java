@@ -1,5 +1,9 @@
 package com.yassine_roma_ariane.ray.modeles.repositories;
 
+/**
+ * Ce fichier appelle les fonctions du DAO pour les réservations
+ */
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -43,7 +47,6 @@ public class ReservationRepository {
                 }
         );
     }
-
 
     public List<Reservation> getReservationsPourClient(String clientId) {
         return dao.getReservationsPourClient(clientId);

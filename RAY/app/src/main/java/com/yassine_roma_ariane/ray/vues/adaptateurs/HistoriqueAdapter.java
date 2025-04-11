@@ -1,5 +1,9 @@
 package com.yassine_roma_ariane.ray.vues.adaptateurs;
 
+/**
+ * Adaptateur pour un historique de voyage
+ */
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;

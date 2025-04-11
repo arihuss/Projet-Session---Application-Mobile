@@ -1,6 +1,8 @@
 package com.yassine_roma_ariane.ray.modeles.dao;
 
-
+/**
+ * Ce DAO constitue de fonctions qui appellent ceux du HttpJsonService en lien avec les voyages
+ */
 
 import com.yassine_roma_ariane.ray.modeles.Voyage;
 

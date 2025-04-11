@@ -1,5 +1,9 @@
 package com.yassine_roma_ariane.ray.vues.adaptateurs;
 
+/**
+ * Adaptateur pour un voyage
+ */
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
@@ -36,9 +40,9 @@ public class VoyageAdapter extends ArrayAdapter {
     }
 
     public void setVoyages(List<Voyage> voyages) {
-        this.voyages.clear(); // Clear existing data
-        this.voyages.addAll(voyages); // Add new data
-        notifyDataSetChanged(); // Refresh UI
+        this.voyages.clear();
+        this.voyages.addAll(voyages);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -75,10 +79,10 @@ public class VoyageAdapter extends ArrayAdapter {
                 txtDesc.setText(voyage.getDescription());
 
                 Glide.with(contexte)
-                        .load(voyage.getImage_url())  // Charge l'image depuis l'URL
-                        .placeholder(R.drawable.ray_logo) // Image par défaut en cas de chargement lent
-                        .error(R.drawable.ray_logo) // Image en cas d'erreur
-                        .into(imgVoyage); // Applique à l'ImageView
+                        .load(voyage.getImage_url())
+                        .placeholder(R.drawable.ray_logo)
+                        .error(R.drawable.ray_logo)
+                        .into(imgVoyage);
             }
         }
         return view;

@@ -1,5 +1,9 @@
 package com.yassine_roma_ariane.ray.modeles.repositories;
 
+/**
+ * Appelle les fonctions du DAO pour les voyages
+ */
+
 import com.yassine_roma_ariane.ray.modeles.Trip;
 import com.yassine_roma_ariane.ray.modeles.Voyage;
 import com.yassine_roma_ariane.ray.modeles.dao.VoyageDAO;

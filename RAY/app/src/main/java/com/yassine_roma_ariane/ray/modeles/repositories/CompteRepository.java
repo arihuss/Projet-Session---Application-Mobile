@@ -29,6 +29,10 @@ public class CompteRepository {
     }
 
 
+    /**
+     * Récupère les comptes de l'API
+     * @param callback
+     */
     public void fetchComptesFromAPI(FetchComptesCallback callback){
         new Thread(()-> {
             try {
@@ -40,6 +44,11 @@ public class CompteRepository {
         }).start();
     }
 
+    /**
+     * Creer un compte
+     * @param compte le compte a creer
+     * @param callback
+     */
     public void creerCompte(CompteUtilisateur compte, CreerCompteCallback callback){
         new Thread(()-> {
             try {
@@ -51,6 +60,12 @@ public class CompteRepository {
         }).start();
     }
 
+    /**
+     * Authentifie le compte
+     * @param courriel Le courriel rentré
+     * @param mdp Le mdp rentré
+     * @param callback
+     */
     public void authentifierCompte(String courriel, String mdp, AuthentifierCompteCallback callback){
         new Thread(() -> {
             try {
