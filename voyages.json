@@ -33,7 +33,7 @@
       "trips": [
         {
           "date": "2025-05-10",
-          "nb_places_disponibles": 0
+          "nb_places_disponibles": 2
         }
       ],
       "type_de_voyage": "Culturel"
@@ -107,21 +107,21 @@
       "activites_incluses": "Balade à Stanley Park, Visite de Granville Island, Dégustation de fruits de mer"
     },
     {
-      "id": "7",
-      "nom_voyage": "Chutes du Niagara",
+      "activites_incluses": "Croisière au pied des chutes, Balade sur Clifton Hill, Visite des vignobles",
       "description": "Admirez l'une des merveilles naturelles du monde.",
-      "prix": 300,
       "destination": "Niagara Falls, Ontario",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/3Falls_Niagara.jpg",
       "duree_jours": 2,
+      "id": "7",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/3Falls_Niagara.jpg",
+      "nom_voyage": "Chutes du Niagara",
+      "prix": 300,
       "trips": [
         {
           "date": "2025-06-25",
-          "nb_places_disponibles": 20
+          "nb_places_disponibles": 18
         }
       ],
-      "type_de_voyage": "Nature",
-      "activites_incluses": "Croisière au pied des chutes, Balade sur Clifton Hill, Visite des vignobles"
+      "type_de_voyage": "Nature"
     },
     {
       "id": "8",
@@ -261,6 +261,16 @@
       "adresse": "123 rue Principale N",
       "telephone": "514-674-0923",
       "mdp": "george1234"
+    },
+    {
+      "id": "e051",
+      "prenom": "Jade",
+      "nom": "Belanger",
+      "age": 16,
+      "email": "jadeb@example.com",
+      "adresse": "15 rue Principale",
+      "telephone": "450-689-4384",
+      "mdp": "jade1234"
     }
   ]
 }

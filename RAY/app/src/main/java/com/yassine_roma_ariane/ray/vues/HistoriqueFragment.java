@@ -55,7 +55,7 @@ public class HistoriqueFragment extends Fragment {
             @Override
             public void onChanged(List<Voyage> voyages) {
                 if (voyages != null) {
-                    adaptateur.setVoyages(voyages); // 🔥 important
+                    adaptateur.setVoyages(voyages);
                 }
             }
         });
