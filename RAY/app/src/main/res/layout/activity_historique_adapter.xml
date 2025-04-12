@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="15dp"
     android:background="@drawable/listitem"
     tools:context=".vues.adaptateurs.HistoriqueAdapter">
 
@@ -21,17 +22,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
+            android:autoSizeMaxTextSize="24sp"
+            android:autoSizeMinTextSize="14sp"
+            android:autoSizeStepGranularity="1sp"
+            android:autoSizeTextType="uniform"
+            android:ellipsize="end"
             android:fontFamily="@font/inter"
+            android:maxLines="1"
             android:text="Havana"
             android:textColor="@color/blanc"
             android:textSize="24sp"
-            android:textStyle="bold"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="14sp"
-            android:autoSizeMaxTextSize="24sp"
-            android:autoSizeStepGranularity="1sp" />
+            android:textStyle="bold" />
 
 
         <LinearLayout
@@ -140,7 +141,6 @@
             android:clipToOutline="true"
             android:outlineProvider="background"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
 
 
         <TextView

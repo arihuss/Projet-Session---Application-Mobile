@@ -1,42 +1,42 @@
 {
   "voyages": [
     {
-      "id": "1",
-      "nom_voyage": "Exploration de Montréal",
+      "activites_incluses": "Visite du Vieux-Montréal, Dégustation de poutine, Tour du Mont-Royal",
       "description": "Découvrez la culture vibrante de Montréal.",
-      "prix": 150,
       "destination": "Montréal, Québec",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Mtl_from_mont_royal_%28cropped%29.jpg/288px-Mtl_from_mont_royal_%28cropped%29.jpg",
       "duree_jours": 3,
+      "id": "1",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Mtl_from_mont_royal_%28cropped%29.jpg/288px-Mtl_from_mont_royal_%28cropped%29.jpg",
+      "nom_voyage": "Exploration de Montréal",
+      "prix": 150,
       "trips": [
         {
           "date": "2025-04-10",
-          "nb_places_disponibles": 20
+          "nb_places_disponibles": 0
         },
         {
           "date": "2025-05-10",
           "nb_places_disponibles": 20
         }
       ],
-      "type_de_voyage": "Culturel",
-      "activites_incluses": "Visite du Vieux-Montréal, Dégustation de poutine, Tour du Mont-Royal"
+      "type_de_voyage": "Culturel"
     },
     {
-      "id": "2",
-      "nom_voyage": "Découverte de Québec",
+      "activites_incluses": "Visite du Château Frontenac, Balade en calèche, Dégustation de spécialités locales",
       "description": "Visitez la vieille capitale avec son charme historique.",
-      "prix": 250,
       "destination": "Québec, Québec",
-      "image_url": "https://www.quebec-cite.com/sites/otq/files/styles/gallery_desktop/public/media/image/VQ_automne.jpg?itok=l6PDlEUH",
       "duree_jours": 2,
+      "id": "2",
+      "image_url": "https://www.quebec-cite.com/sites/otq/files/styles/gallery_desktop/public/media/image/VQ_automne.jpg?itok=l6PDlEUH",
+      "nom_voyage": "Découverte de Québec",
+      "prix": 250,
       "trips": [
         {
           "date": "2025-05-10",
-          "nb_places_disponibles": 8
+          "nb_places_disponibles": 0
         }
       ],
-      "type_de_voyage": "Culturel",
-      "activites_incluses": "Visite du Château Frontenac, Balade en calèche, Dégustation de spécialités locales"
+      "type_de_voyage": "Culturel"
     },
     {
       "id": "3",
@@ -56,38 +56,38 @@
       "activites_incluses": "Randonnée au Parc Forillon, Observation de la faune, Kayak en mer"
     },
     {
-      "id": "4",
-      "nom_voyage": "Séjour détente aux Laurentides",
+      "activites_incluses": "Spa et massages, Randonnée en forêt, Yoga et méditation",
       "description": "Relaxation et nature dans les montagnes.",
-      "prix": 400,
       "destination": "Laurentides, Québec",
-      "image_url": "https://www.quebecvacances.com/images/photos/photos_320_240/strom_spa_nordique_saint_sauveur_1_h.jpg",
       "duree_jours": 4,
+      "id": "4",
+      "image_url": "https://www.quebecvacances.com/images/photos/photos_320_240/strom_spa_nordique_saint_sauveur_1_h.jpg",
+      "nom_voyage": "Séjour détente aux Laurentides",
+      "prix": 400,
       "trips": [
         {
           "date": "2025-03-10",
-          "nb_places_disponibles": 7
+          "nb_places_disponibles": 6
         }
       ],
-      "type_de_voyage": "Bien-être",
-      "activites_incluses": "Spa et massages, Randonnée en forêt, Yoga et méditation"
+      "type_de_voyage": "Bien-être"
     },
     {
-      "id": "5",
-      "nom_voyage": "Aventure dans les Rocheuses",
+      "activites_incluses": "Randonnée au lac Louise, Escalade, Observation des glaciers",
       "description": "Expédition immersive dans les Rocheuses canadiennes.",
-      "prix": 800,
       "destination": "Banff, Alberta",
-      "image_url": "https://www.guidesulysse.com/images/destinations/iStock-471926619.jpg",
       "duree_jours": 7,
+      "id": "5",
+      "image_url": "https://www.guidesulysse.com/images/destinations/iStock-471926619.jpg",
+      "nom_voyage": "Aventure dans les Rocheuses",
+      "prix": 800,
       "trips": [
         {
           "date": "2025-09-20",
-          "nb_places_disponibles": 10
+          "nb_places_disponibles": 5
         }
       ],
-      "type_de_voyage": "Aventure",
-      "activites_incluses": "Randonnée au lac Louise, Escalade, Observation des glaciers"
+      "type_de_voyage": "Aventure"
     },
     {
       "id": "6",
