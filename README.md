@@ -1,4 +1,4 @@
-# Projet Session - Application Mobile
+# Projet Session - Application Mobile par Yassine Ben Nasrallah, Roma Des Ruisseaux, Ariane Hussaini
 
 ## 1. Fonctionnalité du projet
 Notre projet est **fonctionnel** et s'exécute sans erreur.
